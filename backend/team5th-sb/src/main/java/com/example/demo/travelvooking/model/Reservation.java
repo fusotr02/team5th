@@ -20,7 +20,7 @@ public class Reservation {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column
-	private int id;
+	private long id;
 	
 	@ManyToOne()
 	@JoinColumn(name="user",referencedColumnName="id")
@@ -48,11 +48,11 @@ public class Reservation {
 	@Column(columnDefinition="DATETIME DEFAULT'LocalDate.now()'")
 	private LocalDate reservation_date;
 
-	public int getId() {
+	public long getId() {
 		return id;
 	}
 
-	public void setId(int id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 
