@@ -1,4 +1,4 @@
-import RegisterView from '../views/RegisterView.vue'
+import RegisterView from '../views/RegisterConfirmView.vue'
 import RegisterConfirmView from '../views/RegisterConfirmView.vue'
 import RegisterCompleteView from '../views/RegisterCompleteView.vue'
 
