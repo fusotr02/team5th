@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import com.example.demo.travelvooking.dto.LoginRequest;
 import com.example.demo.travelvooking.dto.UserRegisterRequest;
 import com.example.demo.travelvooking.dto.UserResponseDTO;
-import com.example.demo.travelvooking.model.User;
+import com.example.demo.travelvooking.model.User; // ← ここが追加！
 import com.example.demo.travelvooking.repository.UserRepository;
 
 @Service
