@@ -1,12 +1,13 @@
-package com.example.demo.travelbooking.service;
+package com.example.demo.travelvooking.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.travelvooking.dto.LoginRequest;
-import com.example.demo.travelvooking.dto.ReservationResponseDTO.UserRegisterRequest;
+import com.example.demo.travelvooking.dto.UserRegisterRequest;
 import com.example.demo.travelvooking.dto.UserResponseDTO;
+import com.example.demo.travelvooking.model.User;
 import com.example.demo.travelvooking.repository.UserRepository;
 
 @Service

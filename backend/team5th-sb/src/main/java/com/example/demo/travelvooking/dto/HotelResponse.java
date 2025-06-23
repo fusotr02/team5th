@@ -1,5 +1,9 @@
 package com.example.demo.travelvooking.dto;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -7,7 +11,7 @@ package com.example.demo.travelvooking.dto;
 public class HotelResponse {
 	private Long id;
 	private String name;
-	private int price;
+	private double price;
 	private String location;
 	private String imageUrl;
 	private String description;   //ホテル説明

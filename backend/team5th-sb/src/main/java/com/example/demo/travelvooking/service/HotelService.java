@@ -1,5 +1,16 @@
 package com.example.demo.travelvooking.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo.travelvooking.dto.HotelResponse;
+import com.example.demo.travelvooking.model.Hotel;
+import com.example.demo.travelvooking.repository.HotelRepository;
+
+import lombok.RequiredArgsConstructor;
+
 @Service
 @RequiredArgsConstructor
 
@@ -9,18 +20,18 @@ public class HotelService {
 	
 	
 	public List<HotelResponse> getAllHotels(){
-		return hotelRepository.findAii().stream()
+		return hotelRepository.findAll().stream()
 				.map(this::convertToResponse)
 				.collect(Collectors.toList());
 	}
 	
-	public HotelRespones getHotelByID(Long id) {
+	public HotelResponse getHotelByID(Long id) {
 		Hotel hotel = hotelRepository.findById(id)
 				.orElseThrow(()->new RuntimeException("Hotel not found"));
-		return convertToRespones(hotel);
+		return convertToResponse(hotel);
 	}
 	
-	private HotelRespones convertToResponse(Hotel hotel) {
+	private HotelResponse convertToResponse(Hotel hotel) {
 		return new HotelResponse(
                 hotel.getId(),
                 hotel.getName(),
