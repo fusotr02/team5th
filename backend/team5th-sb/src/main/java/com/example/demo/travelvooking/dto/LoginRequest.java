@@ -1,4 +1,4 @@
-package com.example.demo.travelbooking.dto;
+package com.example.demo.travelvooking.dto;
 
 public class LoginRequest {
     private String email;

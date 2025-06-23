@@ -1,12 +1,12 @@
-package com.example.demo.travelbooking.dto;
+package com.example.demo.travelvooking.dto;
 
-public class UserResponseDTO {
+public class UserRegisterRequest {
     private Long id;
     private String name;
     private String email;
 
     // コンストラクタ
-    public UserResponseDTO(Long id, String name, String email) {
+    public UserRegisterRequest(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;
