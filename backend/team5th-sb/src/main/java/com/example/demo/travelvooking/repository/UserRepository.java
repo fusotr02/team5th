@@ -1,5 +1,11 @@
-package com.example.demo.travelvooking.repository;
+package com.example.demo.travelbooking.repository;
 
-public interface UserRepository {
+import java.util.Optional;
 
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface UserRepository extends JpaRepository<User, Long> {
+    Optional<User> findByEmail(String email);
 }
