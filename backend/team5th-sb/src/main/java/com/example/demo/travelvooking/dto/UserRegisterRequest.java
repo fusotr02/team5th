@@ -1,28 +1,21 @@
 package com.example.demo.travelvooking.dto;
 
 public class UserRegisterRequest {
-<<<<<<< HEAD
-    private Long id;
-=======
->>>>>>> d291d0c (エラー対処)
     private String name;
     private String email;
     private String password;
 
-<<<<<<< HEAD
-    // コンストラクタ
-    public UserRegisterRequest(Long id, String name, String email) {
-        this.id = id;
-=======
+    // デフォルトコンストラクタ
     public UserRegisterRequest() {}
 
+    // コンストラクタ
     public UserRegisterRequest(String name, String email, String password) {
->>>>>>> d291d0c (エラー対処)
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
+    // getter / setter
     public String getName() {
         return name;
     }
