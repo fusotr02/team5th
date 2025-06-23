@@ -1,11 +1,18 @@
 <template>
-  <div class="login">
+  <div>
     <h2>ログイン</h2>
     <form @submit.prevent="handleLogin">
-      <input v-model="email" type="email" placeholder="メールアドレス" required />
-      <input v-model="password" type="password" placeholder="パスワード" required />
+      <div>
+        <label>メールアドレス：</label>
+        <input v-model="email" type="email" required />
+      </div>
+      <div>
+        <label>パスワード：</label>
+        <input v-model="password" type="password" required />
+      </div>
       <button type="submit">ログイン</button>
     </form>
+    <p v-if="error">{{ error }}</p>
   </div>
 </template>
 
@@ -17,23 +24,25 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      error: ''
     }
   },
   methods: {
-    ...mapMutations(['login']),
+    ...mapMutations(['setUser']),
     async handleLogin() {
       try {
-        const res = await axios.post('/api/auth/login', {
+        const response = await axios.post('/api/auth/login', {
           email: this.email,
           password: this.password
         })
-        this.login(res.data)
+        this.setUser(response.data)
         this.$router.push('/main')
       } catch (err) {
-        alert('ログインに失敗しました')
+        this.error = 'ログインに失敗しました'
       }
     }
   }
 }
 </script>
+

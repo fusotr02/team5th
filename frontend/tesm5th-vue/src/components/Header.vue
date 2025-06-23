@@ -1,15 +1,32 @@
 <template>
   <header>
+    <h1>ホテル予約サイト</h1>
     <nav>
-      <router-link to="/">ログイン</router-link>
-      <router-link to="/register">新規登録</router-link>
+      <router-link to="/main">ホーム</router-link>
+      <router-link v-if="!isLoggedIn" to="/login">ログイン</router-link>
+      <router-link v-if="!isLoggedIn" to="/register">新規登録</router-link>
+      <button v-if="isLoggedIn" @click="handleLogout">ログアウト</button>
     </nav>
   </header>
 </template>
 
 <script>
+import { mapState, mapMutations } from 'vuex'
+
 export default {
-  name: 'Header'
+  computed: {
+    ...mapState(['user']),
+    isLoggedIn() {
+      return !!this.user
+    }
+  },
+  methods: {
+    ...mapMutations(['logout']),
+    handleLogout() {
+      this.logout()
+      this.$router.push('/login')
+    }
+  }
 }
 </script>
 
@@ -17,11 +34,8 @@ export default {
 header {
   background-color: #f8f8f8;
   padding: 1em;
-  text-align: center;
 }
 nav a {
-  margin: 0 1em;
-  text-decoration: none;
-  color: #333;
+  margin-right: 1em;
 }
 </style>
