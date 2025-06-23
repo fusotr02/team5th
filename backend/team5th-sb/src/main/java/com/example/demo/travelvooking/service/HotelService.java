@@ -7,6 +7,7 @@ public class HotelService {
 	
 	private final HotelRepository hotelRepository;
 	
+	
 	public List<HotelResponse> getAllHotels(){
 		return hotelRepository.findAii().stream()
 				.map(this::convertToResponse)
