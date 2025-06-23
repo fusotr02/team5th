@@ -4,15 +4,18 @@ public class UserRegisterRequest {
     private String name;
     private String email;
     private String password;
-    
+
+    // デフォルトコンストラクタ
     public UserRegisterRequest() {}
 
+    // コンストラクタ
     public UserRegisterRequest(String name, String email, String password) {
         this.name = name;
         this.email = email;
         this.password = password;
     }
 
+    // getter / setter
     public String getName() {
         return name;
     }
