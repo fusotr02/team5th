@@ -1,8 +1,7 @@
 package com.example.demo.travelvooking.model;
 
 import java.time.LocalDate;
-
-import javax.xml.crypto.Data;
+import java.util.Date;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -31,10 +30,10 @@ public class Reservation {
 	private int hotel_id;
 	
 	@Column(nullable=false)
-	private Data checkin_date;
+	private Date checkin_date;
 	
 	@Column(nullable=false)
-	private Data checkout_date;
+	private Date checkout_date;
 	
 	@Column(nullable=false)
 	private int people;
@@ -72,19 +71,19 @@ public class Reservation {
 		this.hotel_id = hotel_id;
 	}
 
-	public Data getCheckin_date() {
+	public Date getCheckin_date() {
 		return checkin_date;
 	}
 
-	public void setCheckin_date(Data checkin_date) {
+	public void setCheckin_date(Date checkin_date) {
 		this.checkin_date = checkin_date;
 	}
 
-	public Data getCheckout_date() {
+	public Date getCheckout_date() {
 		return checkout_date;
 	}
 
-	public void setCheckout_date(Data checkout_date) {
+	public void setCheckout_date(Date checkout_date) {
 		this.checkout_date = checkout_date;
 	}
 

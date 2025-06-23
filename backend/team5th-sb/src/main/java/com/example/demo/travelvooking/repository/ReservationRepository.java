@@ -7,5 +7,6 @@ import com.example.demo.travelvooking.model.Reservation;
 
 @Repository
 public interface ReservationRepository extends JpaRepository<Reservation,Long>{
+	
 
 }
