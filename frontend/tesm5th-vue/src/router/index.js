@@ -5,7 +5,7 @@ import RegisterConfirmView from '../views/RegisterConfirmView.vue'
 import RegisterCompleteView from '../views/RegisterCompleteView.vue'
 import MainPageView from '../views/MainPageView.vue'
 // 他の必要なビューもインポート
-import MyPageView from '../views/MyPageView.vue'
+//import MyPageView from '../views/MyPageView.vue'
 import ReservationFormView from '../views/ReservationFormView.vue'
 import BookmarkListView from '../views/BookmarkListView.vue'
 
