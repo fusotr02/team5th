@@ -3,7 +3,6 @@ package com.example.demo.travelvooking.service;
 @Service
 @RequiredArgsConstructor
 
-
 public class HotelService {
 	
 	private final HotelRepository hotelRepository;
