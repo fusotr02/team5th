@@ -31,4 +31,3 @@ package com.example.demo.travelvooking.model;
 		 private LocalDateTime registeredAt;// 登録日：現在時刻がデフォルト
 	}
 
-}
