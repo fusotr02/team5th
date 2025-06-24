@@ -1,25 +1,25 @@
 package com.example.demo.travelvooking.service;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.travelvooking.dto.LoginRequest;
 import com.example.demo.travelvooking.dto.UserRegisterRequest;
 import com.example.demo.travelvooking.dto.UserResponseDTO;
-import com.example.demo.travelvooking.model.User; // ← ここが追加！
+import com.example.demo.travelvooking.model.User;
 import com.example.demo.travelvooking.repository.UserRepository;
 
 @Service
 public class AuthService {
 
-    @Autowired
-    private UserRepository userRepository;
+    private final UserRepository userRepository;
+    private final PasswordEncoder passwordEncoder;
 
-    @Autowired
-    private PasswordEncoder passwordEncoder;
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
+        this.userRepository = userRepository;
+        this.passwordEncoder = passwordEncoder;
+    }
 
-    // ログイン処理
     public UserResponseDTO login(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("ユーザーが見つかりません"));
@@ -31,7 +31,6 @@ public class AuthService {
         return new UserResponseDTO(user.getId(), user.getName(), user.getEmail());
     }
 
-    // 登録処理
     public UserResponseDTO register(UserRegisterRequest request) {
         if (userRepository.findByEmail(request.getEmail()).isPresent()) {
             throw new RuntimeException("このメールアドレスは既に登録されています");
