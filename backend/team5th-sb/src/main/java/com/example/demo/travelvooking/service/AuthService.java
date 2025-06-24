@@ -1,7 +1,6 @@
 package com.example.demo.travelvooking.service;
 
-import javax.swing.text.PasswordView;
-
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.example.demo.travelvooking.dto.LoginRequest;
@@ -14,18 +13,18 @@ import com.example.demo.travelvooking.repository.UserRepository;
 public class AuthService {
 
     private final UserRepository userRepository;
-    private final PasswordView passwordEncoder;
+    private final PasswordEncoder passwordEncoder;
 
-    public AuthService(UserRepository userRepository) {
+    public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
-        this.passwordEncoder = new PasswordView(null); // ✅ Bean定義なしでも動く
+        this.passwordEncoder = passwordEncoder;
     }
 
     public UserResponseDTO login(LoginRequest request) {
         User user = userRepository.findByEmail(request.getEmail())
                 .orElseThrow(() -> new RuntimeException("ユーザーが見つかりません"));
 
-        if (!((Object) passwordEncoder).matches(request.getPassword(), user.getPassword())) {
+        if (!passwordEncoder.matches(request.getPassword(), user.getPassword())) {
             throw new RuntimeException("パスワードが正しくありません");
         }
 
@@ -37,9 +36,10 @@ public class AuthService {
             throw new RuntimeException("このメールアドレスは既に登録されています");
         }
 
-        String hashedPassword = ((Object) passwordEncoder).encode(request.getPassword());
+        String hashedPassword = passwordEncoder.encode(request.getPassword());
         User newUser = new User(request.getName(), request.getEmail(), hashedPassword);
         User savedUser = userRepository.save(newUser);
+
         return new UserResponseDTO(savedUser.getId(), savedUser.getName(), savedUser.getEmail());
     }
 }
