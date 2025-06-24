@@ -1,5 +1,8 @@
 package com.example.demo.travelvooking.service;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -7,6 +10,7 @@ import com.example.demo.travelvooking.dto.ReservationRequest;
 import com.example.demo.travelvooking.dto.ReservationResponseDTO;
 import com.example.demo.travelvooking.dto.ReservationUpdateRequest;
 import com.example.demo.travelvooking.model.Reservation;
+import com.example.demo.travelvooking.model.User;
 import com.example.demo.travelvooking.repository.HotelRepository;
 import com.example.demo.travelvooking.repository.ReservationRepository;
 import com.example.demo.travelvooking.repository.UserRepository;
@@ -27,10 +31,10 @@ public class ReservationService {
 	private HotelRepository hotelRepository;
 	
 	
-//	public List<Reservation> getReservationByUser(User user){
-//		return reservationRepository.findByUser(user).stream()
-//				.map(this::convertToResponce).collect(Collectors.toList());
-//	}
+	public List<ReservationResponseDTO> getReservationByUser(User user){
+		return reservationRepository.findByUser(user).stream()
+				.map(this::convertToResponce).collect(Collectors.toList());
+	}
 	
 	public ReservationResponseDTO getReservationById(Long id) {
 		Reservation res=reservationRepository.findById(id).orElseThrow(()->new RuntimeException("Reservation not found"));
