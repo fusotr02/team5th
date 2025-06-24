@@ -9,7 +9,7 @@ package com.example.demo.travelvooking.service;
 
 	import com.example.demo.dto.BookmarkRequestDTO;
 	import com.example.demo.dto.BookmarkResponseDTO;
-	import com.example.demo.entity.Bookmark;
+	import com.example.demo.model.Bookmark;
 	import com.example.demo.repository.BookmarkRepository;
 
 	@Service
