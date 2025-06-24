@@ -1,7 +1,5 @@
 ;package com.example.demo.travelvooking.service;
 
-public class BookmarkService {
-
 	import java.time.LocalDateTime;
 	import java.util.List;
 	import java.util.Optional;
