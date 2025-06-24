@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 import com.example.demo.travelvooking.model.Bookmark;
 
 @Repository
-public interface BookmarkRpository extends JpaRepository<Bookmark, Integer> {
+public interface BookmarkRepository extends JpaRepository<Bookmark, Integer> {
 	
 		// 指定ユーザーのブックマーク一覧を取得
 	    List<Bookmark> findByUser(User user);
