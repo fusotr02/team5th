@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.example.demo.dto.BookmarkRequestDTO;
-import com.example.demo.dto.BookmarkResponseDTO;
-import com.example.demo.repository.BookmarkRepository;
-import com.example.demo.service.BookmarkService;
+import com.example.demo.travelvooking.dto.BookmarkRequest;
+import com.example.demo.travelvooking.dto.BookmarkResponseDTO;
+import com.example.demo.travelvooking.repository.BookmarkRepository;
+import com.example.demo.travelvooking.service.BookmarkService;
 
 @RestController
 @RequestMapping("api/bookmark")
