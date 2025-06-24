@@ -22,7 +22,7 @@ public class Reservation {
 	private long id;
 	
 	@ManyToOne()
-	@JoinColumn(name="user",referencedColumnName="id")
+	@JoinColumn(name="users",referencedColumnName="id")
 	private int user_id;
 	
 	@ManyToOne()

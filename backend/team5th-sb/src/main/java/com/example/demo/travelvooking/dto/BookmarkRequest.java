@@ -1,5 +1,10 @@
 package com.example.demo.travelvooking.dto;
 
-public class BookmarkRequest {
+import lombok.Data;
 
-}
+@Data
+public class BookmarkRequest {
+	
+		    private Integer userId; //ユーザーID
+		    private Integer hotelId; //ホテルID
+	}
