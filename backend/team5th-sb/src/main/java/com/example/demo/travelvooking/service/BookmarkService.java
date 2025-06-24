@@ -7,10 +7,10 @@ package com.example.demo.travelvooking.service;
 	import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.stereotype.Service;
 
-	import com.example.demo.dto.BookmarkRequestDTO;
-	import com.example.demo.dto.BookmarkResponseDTO;
-	import com.example.demo.model.Bookmark;
-	import com.example.demo.repository.BookmarkRepository;
+	import com.example.demo.travelvooking.dto.BookmarkRequestDTO;
+	import com.example.demot.travelvooking.dto.BookmarkResponseDTO;
+	import com.example.demo.travelvooking.model.Bookmark;
+	import com.example.demo.travelvooking.repository.BookmarkRepository;
 
 	@Service
 	public class BookmarkService {
