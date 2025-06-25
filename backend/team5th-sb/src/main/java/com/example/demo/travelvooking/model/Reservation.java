@@ -1,6 +1,6 @@
 package com.example.demo.travelvooking.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import jakarta.persistence.Column;
@@ -44,8 +44,8 @@ public class Reservation {
 	@Column(name="status",columnDefinition="VARCHAR(20) DEFAULT'予約済み'")
 	private String status;
 	
-	@Column(name="reservation_date",columnDefinition="DATETIME DEFAULT'LocalDate.now()'")
-	private LocalDate reservation_date;
+	@Column(name="reservation_date",columnDefinition="DATETIME DEFAULT'LocalDateTime.now()'")
+	private LocalDateTime reservation_date;
 
 	public long getId() {
 		return id;
@@ -111,13 +111,15 @@ public class Reservation {
 		this.status = status;
 	}
 
-	public LocalDate getReservation_date() {
+	public LocalDateTime getReservation_date() {
 		return reservation_date;
 	}
 
-	public void setReservation_date(LocalDate reservation_date) {
+	public void setReservation_date(LocalDateTime reservation_date) {
 		this.reservation_date = reservation_date;
 	}
+
+	
 
 	
 

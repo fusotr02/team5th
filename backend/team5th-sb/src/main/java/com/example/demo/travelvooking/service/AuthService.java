@@ -10,12 +10,14 @@ import com.example.demo.travelvooking.dto.UserRegisterRequest;
 import com.example.demo.travelvooking.dto.UserResponseDTO;
 import com.example.demo.travelvooking.model.User;
 import com.example.demo.travelvooking.repository.UserRepository;
+
 @Service
 public class AuthService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
-List<String> list;
+    List<String> list;
+
     // コンストラクタで依存関係を注入
     public AuthService(UserRepository userRepository, PasswordEncoder passwordEncoder) {
         this.userRepository = userRepository;
