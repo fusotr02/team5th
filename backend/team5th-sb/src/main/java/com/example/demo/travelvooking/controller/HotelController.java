@@ -19,6 +19,7 @@ import lombok.RequiredArgsConstructor;
 public class HotelController {
 	 private final HotelService hotelService;
 
+	 
 	    @GetMapping
 	    public List<HotelResponse> getAllHotels() {
 	        return hotelService.getAllHotels();
