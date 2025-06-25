@@ -18,33 +18,33 @@ public class Reservation {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
-	@Column
+	@Column(name="id")
 	private long id;
 	
 	@ManyToOne()
-	@JoinColumn(name="users",referencedColumnName="id")
-	private int user_id;
+	@JoinColumn(name="user_id",nullable=false)
+	private User user;
 	
 	@ManyToOne()
-	@JoinColumn(name="hotel",referencedColumnName="id")
-	private int hotel_id;
+	@JoinColumn(name="hotel_id",nullable=false)
+	private Hotel hotel;
 	
-	@Column(nullable=false)
+	@Column(name="checkin_date",nullable=false)
 	private Date checkin_date;
 	
-	@Column(nullable=false)
+	@Column(name="checkout_date",nullable=false)
 	private Date checkout_date;
 	
-	@Column(nullable=false)
+	@Column(name="people",nullable=false)
 	private int people;
 	
-	@Column(nullable=false)
+	@Column(name="rooms",nullable=false)
 	private int rooms;
 	
-	@Column(columnDefinition="VARCHAR(20) DEFAULT'予約済み'")
+	@Column(name="status",columnDefinition="VARCHAR(20) DEFAULT'予約済み'")
 	private String status;
 	
-	@Column(columnDefinition="DATETIME DEFAULT'LocalDate.now()'")
+	@Column(name="reservation_date",columnDefinition="DATETIME DEFAULT'LocalDate.now()'")
 	private LocalDate reservation_date;
 
 	public long getId() {
@@ -55,20 +55,20 @@ public class Reservation {
 		this.id = id;
 	}
 
-	public int getUser_id() {
-		return user_id;
+	public User getUser() {
+		return user;
 	}
 
-	public void setUser_id(int user_id) {
-		this.user_id = user_id;
+	public void setUser(User user) {
+		this.user = user;
 	}
 
-	public int getHotel_id() {
-		return hotel_id;
+	public Hotel getHotel() {
+		return hotel;
 	}
 
-	public void setHotel_id(int hotel_id) {
-		this.hotel_id = hotel_id;
+	public void setHotel(Hotel hotel) {
+		this.hotel = hotel;
 	}
 
 	public Date getCheckin_date() {
@@ -118,5 +118,7 @@ public class Reservation {
 	public void setReservation_date(LocalDate reservation_date) {
 		this.reservation_date = reservation_date;
 	}
+
+	
 
 }

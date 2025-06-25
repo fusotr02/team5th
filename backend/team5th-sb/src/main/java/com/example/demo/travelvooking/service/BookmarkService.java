@@ -1,6 +1,4 @@
-package com.example.demo.travelvooking.service;
-
-public class BookmarkService {
+;package com.example.demo.travelvooking.service;
 
 	import java.time.LocalDateTime;
 	import java.util.List;
@@ -9,10 +7,10 @@ public class BookmarkService {
 	import org.springframework.beans.factory.annotation.Autowired;
 	import org.springframework.stereotype.Service;
 
-	import com.example.demo.dto.BookmarkRequestDTO;
-	import com.example.demo.dto.BookmarkResponseDTO;
-	import com.example.demo.entity.Bookmark;
-	import com.example.demo.repository.BookmarkRepository;
+	import com.example.demo.travelvooking.dto.BookmarkRequest;
+	import com.example.demot.travelvooking.dto.BookmarkResponseDTO;
+	import com.example.demo.travelvooking.model.Bookmark;
+	import com.example.demo.travelvooking.repository.BookmarkRepository;
 
 	@Service
 	public class BookmarkService {

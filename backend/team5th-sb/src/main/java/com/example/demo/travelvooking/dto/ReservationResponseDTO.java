@@ -3,35 +3,36 @@ package com.example.demo.travelvooking.dto;
 import java.time.LocalDate;
 import java.util.Date;
 
+import com.example.demo.travelvooking.model.Hotel;
+import com.example.demo.travelvooking.model.User;
+
 public class ReservationResponseDTO {
-	public class UserRegisterRequest {
 	    private Long id;
-	    private int user_id;
-	    private int hotel_id;
+	    private User user;
+	    private Hotel hotel;
 	    private Date checkin_date;
 	    private Date checkout_date;
 	    private int people;
 	    private int rooms;
 	    private String status;
 	    private LocalDate reservation_date;
-	    
 		public Long getId() {
 			return id;
 		}
 		public void setId(Long id) {
 			this.id = id;
 		}
-		public int getUser_id() {
-			return user_id;
+		public User getUser() {
+			return user;
 		}
-		public void setUser_id(int user_id) {
-			this.user_id = user_id;
+		public void setUser(User user) {
+			this.user = user;
 		}
-		public int getHotel_id() {
-			return hotel_id;
+		public Hotel getHotel() {
+			return hotel;
 		}
-		public void setHotel_id(int hotel_id) {
-			this.hotel_id = hotel_id;
+		public void setHotel(Hotel hotel) {
+			this.hotel = hotel;
 		}
 		public Date getCheckin_date() {
 			return checkin_date;
@@ -70,9 +71,6 @@ public class ReservationResponseDTO {
 			this.reservation_date = reservation_date;
 		}
 	    
-	    
-
-	    
-	}
+		
 
 }
