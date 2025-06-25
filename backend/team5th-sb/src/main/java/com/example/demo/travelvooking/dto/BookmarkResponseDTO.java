@@ -14,4 +14,3 @@ public class BookmarkResponseDTO {
 	    private String hotelName; //ホテル名
 	    private String hotelimageUrl; //ホテル画像
 	}
-}
