@@ -19,6 +19,9 @@ const routes = [
   { path: '/mypage', component: MyPageView },
   { path: '/reservation/new', component: ReservationFormView },
   { path: '/bookmarks', component: BookmarkListView },
+  {path: '/reservation/form', name: 'ReservationForm',component: ReservationFormView},
+  {path: '/reservation/confirm',name: 'ReservationConfirm',component: ReservationConfirmView},
+  {path: '/reservation/complete',name: 'ReservationComplete',component: ReservationCompleteView}
   // 必要に応じて他のルートも追加
 ]
 

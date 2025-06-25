@@ -1,7 +1,6 @@
 package com.example.demo.travelvooking.service;
 
 import java.time.LocalDateTime;
-import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,8 +33,8 @@ public class ReservationService {
 	private HotelRepository hotelRepository;
 	
 	
-	public List<ReservationResponseDTO> getReservationByUser(User user){
-		return reservationRepository.findByUser(user).stream()
+	public List<ReservationResponseDTO> getReservationByUser(int userId){
+		return reservationRepository.findByUser(userId).stream()
 				.map(this::convertToResponse).collect(Collectors.toList());
 	}
 	
@@ -44,7 +43,7 @@ public class ReservationService {
 		return convertToResponse(res);
 	}
 	
-	public ReservationResponseDTO addReservation(ReservationRequest dto,Date cid,Date cod,int p,int r) {
+	public ReservationResponseDTO addReservation(ReservationRequest dto) {
 		User user = userRepository.findById(dto.getUser()) //後で、インポートする
 	            .orElseThrow(() -> new IllegalArgumentException("ユーザーが見つかりません"));
 	    Hotel hotel = hotelRepository.findById(dto.getHotel()) //後で、インポートする
@@ -52,35 +51,26 @@ public class ReservationService {
 	    Reservation res=new Reservation();
 	    res.setUser(user);
 	    res.setHotel(hotel);
-	    res.setCheckin_date(cid);
-	    res.setCheckout_date(cod);
-	    res.setPeople(p);
-	    res.setRooms(r);
+	    res.setCheckin_date(dto.getCheckin_date());
+		res.setCheckout_date(dto.getCheckout_date());
+		res.setPeople(dto.getPeople());
+		res.setRooms(dto.getRooms());
 	    res.setReservation_date(LocalDateTime.now());
 	    
 	    Reservation saved=reservationRepository.save(res);
 	    return convertToResponse(saved);
 	}
 	
-	public ReservationUpdateRequest updateReservation(Reservation bef,Date cid,Date cod,int p,int r) {
-		ReservationUpdateRequest dto=convertToUpdateRequest(bef);
-		dto.setCheckin_date(cid);
-		dto.setCheckout_date(cod);
-		dto.setPeople(p);
-		dto.setRooms(r);
+	public ReservationResponseDTO updateReservation(Long id,ReservationUpdateRequest dto) {
+		Reservation res=reservationRepository.findById(id)
+				.orElseThrow(()->new IllegalArgumentException("予約が見つかりません"));
+		res.setCheckin_date(dto.getCheckin_date());
+		res.setCheckout_date(dto.getCheckout_date());
+		res.setPeople(dto.getPeople());
+		res.setRooms(dto.getRooms());
 		
-		return dto;
-	}
-	
-	
-	private ReservationUpdateRequest convertToUpdateRequest(Reservation res) {
-		ReservationUpdateRequest rur=new ReservationUpdateRequest();
-		rur.setCheckin_date(res.getCheckin_date());
-		rur.setCheckout_date(res.getCheckout_date());
-		rur.setPeople(res.getPeople());
-		rur.setRooms(res.getRooms());
-		rur.setStatus(res.getStatus());
-		return rur;
+		Reservation saved=reservationRepository.save(res);
+	    return convertToResponse(saved);
 	}
 	
 	private ReservationResponseDTO convertToResponse(Reservation res) {
