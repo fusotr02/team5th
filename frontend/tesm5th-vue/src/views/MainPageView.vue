@@ -1,123 +1,132 @@
 <template>
-    <div class="main-page">
-        <h1>ホテルを探す</h1>
+  <div class="search-area">
+    <section class="search-area">
+      <label>エリアで探す</label>
+      <option value="">選択してください</option>
+      <option v-for="pref in prefectures" :key="pref">{{ pref }}</option>
+    </section>
+    <label>チェックイン日</label>
+    <input type="date" v-model="checkIn" />
 
-        <!-- 🔸検索フォーム -->
-         <div class="search-form">
-            <!-- キーワード検索 -->
-             <input
-             v-model="searchKeyword"
-             type="text"
-             placeholder="ホテル名やキーワード"
-             />
+    <label>チェックアウト日</label>
+    <input type="date" v-model="checkOut" />
 
-             <!-- 🔸チェックイン・アウト -->
-              <div class="date-pickers">
-                <label>               
-                    チェックイン:
-                    <input type="date" v-model="checkInDate"/>
-                </label>
-                <label>
-                    チェックアウト:
-                    <input type="date" v-model="checkOutDate"/>
-                </label>
-         </div>
+    <label>予約人数</label>
+    <input type="number" v-model.number="guests" min="1" placeholder="人数を入力"/>
 
-         <!-- 🔸地域選択 -->
-          <div class="regoin-select">
-            <button @click="toggleRegionList">
-                地域を選ぶ
-            </button>
-            <div v-if="showRegions" class="region-list">
-                <button v-for="pref in prefectures":key="pref"@click="selectRegion(pref)">
-                    {{ pref }}
-                </button>
-            </div>
-            <p v-if="selectedRegion">選択中:{{ selectedRegion }}</p>
-          </div>
+    <button @click="searchHotels">検索</button>
 
-          <!-- 🔸検索ボタン -->
-           <button @click="searchHotels">検索</button>
-         </div>
-    </div>
+    <section class="recommend-area">
+      <h2>おすすめホテル</h2>
+      <div class="recommend-area">
+        <HotelCard
+          v-for="hotel in recommendedHotels"
+          :key="hotel.id"
+          :hotel="hotel"
+        />
+      </div>
+      <router-link to="/hotels" class="more-link">もっと見る</router-link>
+    </section>
+  </div>
 </template>
 
+
 <script setup>
-import {ref} form 'vue'
+import {ref} from 'vue' 
 import {useRouter} from 'vue-router'
+import HotelCard from './HotelCard.vue'
 
 const router=useRouter()
 
-const searchKeyword=ref('')
-const checkInDate=ref('')
-const checkOutDate=ref('')
-const selectedRegion=ref('')
-const showRegions=ref(false)
+const location = ref('')
+const checkIn = ref('')
+const checkOut = ref('')
+const guests = ref(1)
 
-const toggleRegionList=()=>{
-    selectedRegion.value=region
-    showRegions.value=false
-}
+// const toggleRegionList=()=>{
+//     selectedRegion.value=region
+//     showRegions.value=false
+// }
 
-const prefectures[
-    '北海道','青森県','秋田県','岩手県','宮城県','山形県','福島県',
-    '茨城県','栃木県','群馬県','埼玉県','千葉県','東京都','神奈川県',
-    '新潟県','富山県','石川県','福井県','山梨県','長野県',
-    '岐阜県','静岡県','愛知県','三重県'
-    '滋賀県','京都府','大阪府','兵庫県','奈良県','和歌山県',
-    '岡山県','鳥取県','島根県','広島県','山口県',
-    '徳島県','香川県','高知県','愛媛県',
-    '福岡県','佐賀県','長崎県','大分県','熊本県','宮崎県','鹿児島県',
-    '沖縄県'
+const prefectures = [
+  '北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県',
+  '茨城県', '栃木県', '群馬県', '埼玉県', '千葉県', '東京都', '神奈川県',
+  '新潟県', '富山県', '石川県', '福井県', '山梨県', '長野県',
+  '岐阜県', '静岡県', '愛知県', '三重県',
+  '滋賀県', '京都府', '大阪府', '兵庫県', '奈良県', '和歌山県',
+  '鳥取県', '島根県', '岡山県', '広島県', '山口県',
+  '徳島県', '香川県', '愛媛県', '高知県',
+  '福岡県', '佐賀県', '長崎県', '熊本県', '大分県', '宮崎県', '鹿児島県', '沖縄県'
 ]
 
-const searchHotels=()=>{
-    router.push({
-        path:'hotels',
-        query:{
-            keyword: searchKeyword.value,
-            region: selectedRegion.value,
-            checkIn: checkInData.value,
-            checkOut: checkOutDate.value
-        }
-    })
+const recommendedHotels = ref([
+  { id: 1, name: '東京リゾート', location: '東京都', price: 15000, image: '/img/hotel1.jpg' },
+  { id: 2, name: '大阪グランドホテル', location: '大阪府', price: 12000, image: '/img/hotel2.jpg' },
+  { id: 3, name: '沖縄ビーチホテル', location: '沖縄県', price: 18000, image: '/img/hotel3.jpg' },
+])
+
+const searchHotels = () => {
+  router.push({
+    path: '/hotels',
+    query: {
+      location: location.value,
+      checkIn: checkIn.value,
+      checkOut: checkOut.value,
+      guests: guests.value
+    }
+  })
 }
 </script>
 
 <style scoped>
-.main-page {
-  padding: 40px;
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
+.search-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.5rem;
+  background: #f9f9f9;
+  border-radius: 8px;
 }
-.search-form {
-  margin-top: 20px;
+
+label {
+  font-weight: bold;
 }
-input[type="text"],
-input[type="date"] {
-  margin: 10px;
-  padding: 8px;
-  width: 80%;
-  max-width: 400px;
-  font-size: 16px;
+
+input, select {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
 }
+
 button {
-  margin: 10px;
-  padding: 8px 16px;
+  background-color: #1976d2;
+  color: white;
+  padding: 0.6rem;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
 }
-.region-list {
+
+button:hover {
+  background-color: #1259a3;
+}
+
+.recommend-area {
+  margin-top: 2rem;
+}
+
+.recommend-list {
   display: flex;
   flex-wrap: wrap;
-  justify-content: center;
-  gap: 8px;
-  margin: 10px 0;
+  gap: 1rem;
 }
-.region-list button {
-  background: #f0f0f0;
-  border: 1px solid #ccc;
-  padding: 6px 10px;
-  cursor: pointer;
+
+.more-link {
+  display: inline-block;
+  margin-top: 1rem;
+  color: #1976d2;
+  font-weight: bold;
 }
 </style>
 
