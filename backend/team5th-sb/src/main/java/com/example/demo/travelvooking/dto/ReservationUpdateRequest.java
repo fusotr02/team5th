@@ -3,11 +3,18 @@ package com.example.demo.travelvooking.dto;
 import java.util.Date;
 
 public class ReservationUpdateRequest {
+	private Long id;
 	private Date checkin_date;
 	private Date checkout_date;
 	private int people;
 	private int rooms;
 	private String status;
+	public Long getId() {
+		return id;
+	}
+	public void setId(Long id) {
+		this.id = id;
+	}
 	public Date getCheckin_date() {
 		return checkin_date;
 	}

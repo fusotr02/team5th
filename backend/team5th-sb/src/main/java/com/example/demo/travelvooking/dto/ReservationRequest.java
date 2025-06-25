@@ -1,6 +1,6 @@
 package com.example.demo.travelvooking.dto;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Date;
 
 import com.example.demo.travelvooking.model.Hotel;
@@ -15,7 +15,7 @@ public class ReservationRequest {
     private int people;
     private int rooms;
     private String status;
-    private LocalDate reservation_date;
+    private LocalDateTime reservation_date;
     
 	public Long getId() {
 		return id;
@@ -65,10 +65,10 @@ public class ReservationRequest {
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	public LocalDate getReservation_date() {
+	public LocalDateTime getReservation_date() {
 		return reservation_date;
 	}
-	public void setReservation_date(LocalDate reservation_date) {
+	public void setReservation_date(LocalDateTime reservation_date) {
 		this.reservation_date = reservation_date;
 	}
 	
