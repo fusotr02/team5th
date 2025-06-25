@@ -32,9 +32,9 @@
 
 
 <script setup>
-import {ref} from 'vue' 
-import {useRouter} from 'vue-router'
-import HotelCard from './HotelCard.vue'
+import {ref} from 'vue' ;
+import {useRouter} from 'vue-router';
+import HotelCard from '../components/HotelCard.vue';
 
 const router=useRouter()
 
