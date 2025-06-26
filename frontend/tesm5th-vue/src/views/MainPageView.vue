@@ -1,10 +1,15 @@
 <template>
   <div class="search-area">
-    <section class="search-area">
-      <label>エリアで探す</label>
-      <option value="">選択してください</option>
-      <option v-for="pref in prefectures" :key="pref">{{ pref }}</option>
+    <section>
+      <label for="location">地域を選択</label>
+      <select v-model="location" id="location">
+        <option value="">選択してください</option>
+        <option v-for="pref in prefectures" :key="pref" :value="pref">
+          {{ pref }}
+        </option>
+      </select>
     </section>
+
     <label>チェックイン日</label>
     <input type="date" v-model="checkIn" />
 
@@ -18,7 +23,7 @@
 
     <section class="recommend-area">
       <h2>おすすめホテル</h2>
-      <div class="recommend-area">
+      <div class="recommend-list">
         <HotelCard
           v-for="hotel in recommendedHotels"
           :key="hotel.id"
