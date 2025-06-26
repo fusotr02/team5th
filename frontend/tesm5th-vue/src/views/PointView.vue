@@ -4,7 +4,7 @@
     <header class="header">
       <h1>ホテル予約サイト</h1>
       <p>
-        <router-link to="/mypage" class="link">マイアカウント</router-link> ＞支払い方法
+        <router-link to="/mypage" class="link">マイアカウント</router-link> ＞ポイント残高
       </p>
     </header>
 
@@ -23,12 +23,12 @@
 
       <!-- 右側内容 -->
       <main class="content">
-        <h1>支払い方法</h1>
-        <p>予約をスムーズにするためのお支払い方法の追加・削除が安全に行えます</p>
+        <h1>ポイント残高</h1>
+        <p>ポイントを貯めて、お得に旅をしましょう</p>
         <hr />
         <div class="card-section">
-          <span>お支払用カード　別のカードで支払う</span>
-          <button class="button">カードを登録</button>
+          <span>現在　0pt</span>
+          <button class="button">ホテルを探す</button>
         </div>
         <hr />
       </main>
@@ -52,6 +52,7 @@ import { ref } from 'vue'
   width: 100vw;
   max-width: 1200px; /* ← 上限を設定 */
   height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
@@ -59,7 +60,7 @@ import { ref } from 'vue'
 
 /* ヘッダー部分 */
 .header {
-  background-color: #1e3a8a;
+  background-color: #1e3a8a; 
   color: white;
   padding: 16px;
   position: fixed;
@@ -81,8 +82,7 @@ import { ref } from 'vue'
   display: flex !important;        
   align-items: center !important;  
   gap: 4px !important;  
-  width: fit-content;      
-  color: #ffffff;
+  width: fit-content;           
 }
 
 .link {
@@ -104,17 +104,18 @@ import { ref } from 'vue'
   height: calc(100vh - 96px);
   min-height: 0;
   background-color: #ffffff;
+  overflow: hidden;
 }
 
 /* 左側メニュー */
 .sidebar {
   width: 25%;
   background-color: #f3f4f6;
-  padding: 24px 16px 24px 20px; /* ← 左側の余白を増やす */ 
+  padding: 24px 16px 20px 20px; /* ← 左側の余白を増やす */ 
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 100%;  /* 高さを親に合わせる */
+  height: 330vh; /* 高さを親に合わせる */
   gap: 16px;
 }
 
@@ -163,7 +164,6 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
 }
 
 .button {
@@ -177,10 +177,5 @@ hr {
 
 .button:hover {
   background-color: #374bbf;
-}
-
-/* 画面外スクロールを防止 */
-body {
-  overflow: hidden;
 }
 </style>
