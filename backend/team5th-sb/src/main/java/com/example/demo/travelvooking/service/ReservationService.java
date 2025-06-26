@@ -44,9 +44,9 @@ public class ReservationService {
 	}
 	
 	public ReservationResponseDTO addReservation(ReservationRequest dto) {
-		User user = userRepository.findById(dto.getUser()) //後で、インポートする
+		User user = userRepository.findById(dto.getUser_id()) //後で、インポートする
 	            .orElseThrow(() -> new IllegalArgumentException("ユーザーが見つかりません"));
-	    Hotel hotel = hotelRepository.findById(dto.getHotel()) //後で、インポートする
+	    Hotel hotel = hotelRepository.findById(dto.getHotel_id()) //後で、インポートする
 	            .orElseThrow(() -> new IllegalArgumentException("ホテルが見つかりません"));
 	    Reservation res=new Reservation();
 	    res.setUser(user);
