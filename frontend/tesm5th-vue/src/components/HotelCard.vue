@@ -1,5 +1,11 @@
 <template>
     <div class="hotel-card"@click="goToDetail">
+
+    <!-- ❤️ ブックマークボタン -->
+    <button class="bookmark-btn" @click.stop="toggleBookmark">
+      {{ isBookmarked ? '♥' : '♡' }}
+    </button>
+
         <img :src="hotel.image" alt="ホテル画像">
         <h3>{{ hotel.name }}</h3>
         <p>{{ hotel.location }}</p>
@@ -9,12 +15,22 @@
 </template>
 
 <script setup>
-
+import { ref } from 'vue'
 import {useRouter} from 'vue-router'
 const props = defineProps({
     hotel:Object
 })
 
+const router = useRouter()
+function goToDetail() {
+  router.push(`/hotel/${props.hotel.id}`)
+}
+
+// 仮のローカル状態（♥か♡を切り替えるだけ）
+const isBookmarked = ref(false)
+function toggleBookmark() {
+  isBookmarked.value = !isBookmarked.value
+}
 </script>
 
 <style scoped>
@@ -50,5 +66,21 @@ button{
 
 button:hover{
     background-color: #1259a3;
+}
+
+/* ❤️ ハートボタン */
+.bookmark-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #e53935;
+  cursor: pointer;
+}
+
+.bookmark-btn:hover {
+  transform: scale(1.2);
 }
 </style>
