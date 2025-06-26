@@ -79,9 +79,9 @@ public class BookmarkService {
 	private BookmarkResponseDTO convertToResponseDTO(Bookmark bookmark) {
 		BookmarkResponseDTO dto = new BookmarkResponseDTO();
 		dto.setBookmarkId(bookmark.getBookmarkId());
-		dto.setHotelId(bookmark.getHotel().getId()); //getHotelIdになんでエラーでるの？これはどこのデータを取ってくるんだ？
-		dto.setHotelName(bookmark.getHotel().getName()); //getHotelNameになんでエラーでるの？これはどこのデータを取ってくるんだ？
-		dto.setHotelimageUrl(bookmark.getHotel().getImageUrl()); //setHotelImageUrlになんでエラーでるの？
+		dto.setHotelId(bookmark.getHotel().getId()); 
+		dto.setHotelName(bookmark.getHotel().getName()); 
+		dto.setHotelimageUrl(bookmark.getHotel().getImageUrl()); 
 		dto.setRegisteredAt(bookmark.getRegisteredAt());
 		return dto;
 	}
