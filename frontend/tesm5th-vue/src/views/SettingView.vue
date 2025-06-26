@@ -4,7 +4,7 @@
     <header class="header">
       <h1>ホテル予約サイト</h1>
       <p>
-        <router-link to="/mypage" class="link">マイアカウント</router-link> ＞支払い方法
+        <router-link to="/mypage" class="link">マイアカウント</router-link> ＞各種設定
       </p>
     </header>
 
@@ -12,23 +12,28 @@
     <div class="body">
       <!-- 左側メニュー -->
       <aside class="sidebar">
-　　     <router-link to="/profile" class="nav-link">個人情報</router-link>
-        <router-link to="/security" class="nav-link">セキュリティ設定</router-link>
-        <router-link to="/reservation" class="nav-link">予約履歴</router-link>
-        <router-link to="/bookmark" class="nav-link">お気に入り</router-link>
-        <router-link to="/payment" class="nav-link active">支払方法</router-link>
-        <router-link to="/settings" class="nav-link">各種設定</router-link>
-        <router-link to="/logout" class="nav-link">ログアウト</router-link>
+          <router-link to="/profile" class="nav-link" :class="{ active: $route.path === '/profile' }">個人情報</router-link>
+          <router-link to="/security" class="nav-link" :class="{ active: $route.path === '/security' }">セキュリティ設定</router-link>
+          <router-link to="/reservation" class="nav-link" :class="{ active: $route.path === '/reservation' }">予約履歴</router-link>
+          <router-link to="/bookmark" class="nav-link" :class="{ active: $route.path === '/bookmark' }">お気に入り</router-link>
+          <router-link to="/payment" class="nav-link" :class="{ active: $route.path === '/payment' }">支払方法</router-link>
+          <router-link to="/settings" class="nav-link" :class="{ active: $route.path === '/settings' }">各種設定</router-link>
+          <router-link to="/logout" class="nav-link" :class="{ active: $route.path === '/logout' }">ログアウト</router-link>
       </aside>
 
       <!-- 右側内容 -->
       <main class="content">
-        <h1>支払い方法</h1>
-        <p>予約をスムーズにするためのお支払い方法の追加・削除が安全に行えます</p>
+        <h1>カスタマイズ設定</h1>
+        <p>ニーズに合わせてアカウントのカスタマイズが行えます</p>
         <hr />
         <div class="card-section">
-          <span>お支払用カード　別のカードで支払う</span>
-          <button class="button">カードを登録</button>
+          <span>通貨　￥ Japanese yen</span>
+          <button class="button">編集</button>
+        </div>
+        <hr />
+        <div class="card-section">
+          <span>言語　日本語</span>
+          <button class="button">編集</button>
         </div>
         <hr />
       </main>
@@ -37,7 +42,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+// JS処理は今回なし
 </script>
 
 <style scoped>
@@ -52,6 +57,7 @@ import { ref } from 'vue'
   width: 100vw;
   max-width: 1200px; /* ← 上限を設定 */
   height: 100vh;
+  overflow: hidden;
   display: flex;
   flex-direction: column;
   background-color: #ffffff;
@@ -59,7 +65,7 @@ import { ref } from 'vue'
 
 /* ヘッダー部分 */
 .header {
-  background-color: #1e3a8a;
+  background-color: #1e3a8a; 
   color: white;
   padding: 16px;
   position: fixed;
@@ -81,7 +87,7 @@ import { ref } from 'vue'
   display: flex !important;        
   align-items: center !important;  
   gap: 4px !important;  
-  width: fit-content;      
+  width: fit-content; 
   color: #ffffff;
 }
 
@@ -94,6 +100,11 @@ import { ref } from 'vue'
   background-color: transparent; /* 背景色を透明に */
 }
 
+.nav-link.active {
+  color: #1e3a8a;
+  font-weight: bold;
+}
+
 /* メイン部分（2分割） */
 .body {
   display: flex;
@@ -102,8 +113,8 @@ import { ref } from 'vue'
   padding: 0;
   margin-top: 73px; /* ヘッダー分のスペース */
   height: calc(100vh - 96px);
-  min-height: 0;
   background-color: #ffffff;
+  overflow: hidden;
 }
 
 /* 左側メニュー */
@@ -114,7 +125,7 @@ import { ref } from 'vue'
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  height: 100%;  /* 高さを親に合わせる */
+  height: 330vh; /* 高さを親に合わせる */
   gap: 16px;
 }
 
@@ -163,7 +174,6 @@ hr {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 8px 0;
 }
 
 .button {
@@ -177,10 +187,5 @@ hr {
 
 .button:hover {
   background-color: #374bbf;
-}
-
-/* 画面外スクロールを防止 */
-body {
-  overflow: hidden;
 }
 </style>
