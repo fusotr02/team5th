@@ -1,6 +1,5 @@
 package com.example.demo.travelvooking.model;
 
-
 	import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
@@ -12,7 +11,10 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 
+import lombok.Data;
+
 	@Entity
+	@Data
 	@Table(name = "bookmarks")
 	public class Bookmark {
 		 @Id
@@ -31,4 +33,3 @@ import jakarta.persistence.Table;
 		 @Column(name = "registered_at", nullable = false)
 		 private LocalDateTime registeredAt;// 登録日：現在時刻がデフォルト
 	}
-
