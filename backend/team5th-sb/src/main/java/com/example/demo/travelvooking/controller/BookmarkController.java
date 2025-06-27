@@ -1,4 +1,5 @@
 package com.example.demo.travelvooking.controller;
+
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +14,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.travelvooking.dto.BookmarkRequest;
 import com.example.demo.travelvooking.dto.BookmarkResponseDTO;
-import com.example.demo.travelvooking.repository.BookmarkRepository;
 import com.example.demo.travelvooking.service.BookmarkService;
 
 @RestController
@@ -31,7 +31,7 @@ public class BookmarkController {
 	    
 	    // 🔹 ブックマーク登録（ハートON）
 	    @PostMapping
-	    public BookmarkResponseDTO addBookmark(@RequestBody BookmarkRequestDTO dto) {
+	    public BookmarkResponseDTO addBookmark(@RequestBody BookmarkRequest dto) {
 	        return bookmarkService.addBookmark(dto);
 	    }
 
@@ -43,9 +43,17 @@ public class BookmarkController {
 	    
 	    // 🔹 ユーザー＆ホテル指定でブックマーク取得（すでにあるかどうか確認する用）
 	    @GetMapping("/exists")
-	    public BookmarkResponseDTO checkBookmarkExists(@RequestParam int userId,@RequestParam int hotelId) {
+	    public BookmarkResponseDTO checkBookmarkExists(@RequestParam Long userId,@RequestParam Long hotelId) {
 	        return bookmarkService.getByUserIdAndHotelId(userId, hotelId)
+	        		.map(bookmark -> {
+	                    BookmarkResponseDTO dto = new BookmarkResponseDTO();
+	                    dto.setBookmarkId(bookmark.getBookmarkId());
+	                    dto.setHotelId(bookmark.getHotel().getId());
+	                    dto.setHotelName(bookmark.getHotel().getName());
+	                    dto.setHotelimageUrl(bookmark.getHotel().getImageUrl());
+	                    dto.setRegisteredAt(bookmark.getRegisteredAt());
+	                    return dto;
+	                })	
 	            .orElse(null); // 見つからない場合はnullを返す（Vueでチェック可能）
 	    }
-	}
 }
