@@ -18,10 +18,14 @@ import InquiryView from '../views/InquiryView.vue'
 import LogoutView from '../views/LogoutView.vue'
 import ReservationConfirmView from '../views/ReservationConfirmView.vue'
 import ReservationCompleteView from '../views/ReservationCompleteView.vue'
+import HotelDetailView from '../views/HotelDetailView.vue'
 
 const routes = [
   { path: '/', redirect: '/main' }, // 初期表示はマイページ
   { path: '/main', component: MainPageView }, // ← これが追加された行です
+
+  { path: '/hotels', component: MainPageView }, // ホテル一覧ページ（クエリパラメータ対応）
+  { path: '/hotel/:id', name: 'HotelDetail', component: HotelDetailView }, // 詳細ページ
 
   { path: '/login', component: LoginView },
   { path: '/register', component: RegisterView },
