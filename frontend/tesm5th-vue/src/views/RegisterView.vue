@@ -1,7 +1,7 @@
 <template>
-<<<<<<< HEAD
+
   <div class="register-container">
-    <!-- ハンバーガーメニュー -->
+   <!--  ハンバーガーメニュー -->
     <div class="menu-icon" @click="toggleSidebar">☰</div>
 
     <!-- サイドバー -->
@@ -18,8 +18,7 @@
       <input type="email" v-model="email" placeholder="メールアドレス" required />
       <input type="password" v-model="password" placeholder="パスワード" required />
       <button type="submit">確認</button>
-    </form>
-=======
+    </form> 
   <div class="wrapper">
     <!-- ヘッダー -->
     <header class="header">
@@ -55,8 +54,10 @@
         <router-link to="/" class="back-home-link">トップページへ戻る</router-link>
       </form>
     </div>
->>>>>>> b210004d8a7ba9ee5177336ed1a69fa0e2507c36
+
   </div>
+  </div>
+
 </template>
 
 <script setup>
@@ -71,7 +72,7 @@ const form = ref({
   password: ''
 })
 
-<<<<<<< HEAD
+
 const navigateTo = (path) => {
   router.push(path)
   isSidebarOpen.value = false
@@ -86,15 +87,13 @@ const handleConfirm = () => {
       password: password.value
     }
   })
-=======
-const goToConfirm = () => {
-  router.push({ name: 'RegisterConfirm', state: form.value })
->>>>>>> b210004d8a7ba9ee5177336ed1a69fa0e2507c36
+
+
 }
 </script>
 
 <style scoped>
-<<<<<<< HEAD
+
 :global(html, body) {
   margin: 0;
   padding: 0;
@@ -124,24 +123,8 @@ const goToConfirm = () => {
 /* サイドバー */
 .sidebar {
   position: absolute;
-=======
-.wrapper {
-  position: relative;
-  min-height: 100vh;
-  background-color: #ffffff;
-  padding-top: 80px;
-}
 
-/* ヘッダー */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #1e3a8a;
-  color: white;
-  padding: 16px 24px;
-  position: fixed;
->>>>>>> b210004d8a7ba9ee5177336ed1a69fa0e2507c36
+
   top: 0;
   left: 0;
   width: 100%;
@@ -186,7 +169,7 @@ const goToConfirm = () => {
 .register-form {
   display: flex;
   flex-direction: column;
-<<<<<<< HEAD
+
 }
 .sidebar.open {
   left: 0;
@@ -220,34 +203,8 @@ button {
   font-size: 16px;
   border: 1px solid #233;
   background-color: white;
-=======
-  gap: 1rem;
-}
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
-}
-
-label {
-  font-weight: bold;
-  margin-bottom: 4px;
-}
-
-input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button[type="submit"] {
-  padding: 10px;
-  background-color: #1976d2;
-  color: white;
-  border: none;
-  border-radius: 4px;
->>>>>>> b210004d8a7ba9ee5177336ed1a69fa0e2507c36
+ 
   cursor: pointer;
   font-weight: bold;
 }
