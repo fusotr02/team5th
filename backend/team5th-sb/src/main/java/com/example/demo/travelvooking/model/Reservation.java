@@ -19,7 +19,7 @@ public class Reservation {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id")
-	private long id;
+	private Long id;
 	
 	@ManyToOne()
 	@JoinColumn(name="user_id",nullable=false)
@@ -36,10 +36,10 @@ public class Reservation {
 	private Date checkout_date;
 	
 	@Column(name="people",nullable=false)
-	private int people;
+	private Integer people;
 	
 	@Column(name="rooms",nullable=false)
-	private int rooms;
+	private Integer rooms;
 	
 	@Column(name="status",columnDefinition="VARCHAR(20) DEFAULT'予約済み'")
 	private String status;
@@ -47,11 +47,11 @@ public class Reservation {
 	@Column(name="reservation_date",columnDefinition="DATETIME DEFAULT'LocalDateTime.now()'")
 	private LocalDateTime reservation_date;
 
-	public long getId() {
+	public Long getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(Long id) {
 		this.id = id;
 	}
 
@@ -87,19 +87,19 @@ public class Reservation {
 		this.checkout_date = checkout_date;
 	}
 
-	public int getPeople() {
+	public Integer getPeople() {
 		return people;
 	}
 
-	public void setPeople(int people) {
+	public void setPeople(Integer people) {
 		this.people = people;
 	}
 
-	public int getRooms() {
+	public Integer getRooms() {
 		return rooms;
 	}
 
-	public void setRooms(int rooms) {
+	public void setRooms(Integer rooms) {
 		this.rooms = rooms;
 	}
 

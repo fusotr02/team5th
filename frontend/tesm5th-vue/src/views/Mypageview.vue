@@ -40,8 +40,9 @@
 
 <script setup>
 import { RouterLink } from 'vue-router'
-import { ref, onMounted } from 'vue'
+//import { ref, onMounted } from 'vue'
 import bannerImage from '@/assets/premium_photo-1661914240950-b0124f20a5c1.avif'
+
 
 const username = ref('ゲスト') // 初期値
 
@@ -56,8 +57,6 @@ onMounted(() => {
     }
   }
 })
-
-
 </script>
 
 <style>
@@ -66,7 +65,7 @@ onMounted(() => {
   width: 100%;
   height: 100vh;
   overflow-x: hidden;
-  background-color: #f9f9f9;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
   padding-left: 10px;
@@ -84,32 +83,26 @@ onMounted(() => {
   z-index: 10;
 }
 
-.header h1 {
-  margin: 0;
-  font-size: 24px;
-  text-align: left;
-}
-
 .welcome {
   text-align: center;
-  font-size: 18px;
+  font-size: 25px;
   margin: 4px 0 0;
 }
 
 .main {
   flex: 1;
-  padding: 32px 24px;
+  padding: 0px 24px;
   margin-top: 96px;
   box-sizing: border-box;
   width: 100%;
 }
 
 .banner {
-  width: 900px;
-  height: 40vh;
+  width: 1160px;
+  height: 42vh;
   object-fit: cover;
   border-radius: 12px;
-  margin-bottom: 32px;
+  margin-bottom: 30px;
 }
 
 .card-grid {

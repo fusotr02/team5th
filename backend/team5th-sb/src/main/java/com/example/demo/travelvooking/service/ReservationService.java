@@ -44,9 +44,9 @@ public class ReservationService {
 	}
 	
 	public ReservationResponseDTO addReservation(ReservationRequest dto) {
-		User user = userRepository.findById(dto.getUser_id()) //後で、インポートする
+		User user = userRepository.findById(dto.getUserId()) //後で、インポートする
 	            .orElseThrow(() -> new IllegalArgumentException("ユーザーが見つかりません"));
-	    Hotel hotel = hotelRepository.findById(dto.getHotel_id()) //後で、インポートする
+	    Hotel hotel = hotelRepository.findById(dto.getHotelId()) //後で、インポートする
 	            .orElseThrow(() -> new IllegalArgumentException("ホテルが見つかりません"));
 	    Reservation res=new Reservation();
 	    res.setUser(user);
@@ -74,17 +74,21 @@ public class ReservationService {
 	}
 	
 	private ReservationResponseDTO convertToResponse(Reservation res) {
-		ReservationResponseDTO rrdto=new ReservationResponseDTO();
-		rrdto.setId(res.getId());
-		rrdto.setUser(res.getUser());
-		rrdto.setHotel(res.getHotel());
-		rrdto.setCheckin_date(res.getCheckin_date());
-		rrdto.setCheckout_date(res.getCheckout_date());
-		rrdto.setPeople(res.getPeople());
-		rrdto.setRooms(res.getRooms());
-		rrdto.setStatus(res.getStatus());
-		rrdto.setReservation_date(res.getReservation_date());
-		return rrdto;
+		ReservationResponseDTO dto=new ReservationResponseDTO();
+		dto.setId(res.getId());
+		dto.setCheckin_date(res.getCheckin_date());
+		dto.setCheckout_date(res.getCheckout_date());
+		dto.setPeople(res.getPeople());
+		dto.setRooms(res.getRooms());
+		dto.setStatus(res.getStatus());
+		dto.setReservation_date(res.getReservation_date());
+		dto.setHotelId(res.getHotel().getId());
+		dto.setHotelName(res.getHotel().getName());
+		dto.setHotelimageUrl(res.getHotel().getImageUrl());
+		dto.setUserId(res.getUser().getId());
+		dto.setUserName(res.getUser().getName());
+		
+		return dto;
 	}
 	
 	
