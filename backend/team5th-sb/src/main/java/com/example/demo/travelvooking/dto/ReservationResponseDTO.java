@@ -3,36 +3,26 @@ package com.example.demo.travelvooking.dto;
 import java.time.LocalDateTime;
 import java.util.Date;
 
-import com.example.demo.travelvooking.model.Hotel;
-import com.example.demo.travelvooking.model.User;
-
 public class ReservationResponseDTO {
 	    private Long id;
-	    private User user;
-	    private Hotel hotel;
 	    private Date checkin_date;
 	    private Date checkout_date;
-	    private int people;
-	    private int rooms;
+	    private Integer people;
+	    private Integer rooms;
 	    private String status;
 	    private LocalDateTime reservation_date;
+
+	    private Long hotelId; //ホテルID
+	    private String hotelName; //ホテル名
+	    private String hotelimageUrl; //ホテル画像
+	    
+	    private Long userId;
+	    private String userName;
 		public Long getId() {
 			return id;
 		}
 		public void setId(Long id) {
 			this.id = id;
-		}
-		public User getUser() {
-			return user;
-		}
-		public void setUser(User user) {
-			this.user = user;
-		}
-		public Hotel getHotel() {
-			return hotel;
-		}
-		public void setHotel(Hotel hotel) {
-			this.hotel = hotel;
 		}
 		public Date getCheckin_date() {
 			return checkin_date;
@@ -46,16 +36,16 @@ public class ReservationResponseDTO {
 		public void setCheckout_date(Date checkout_date) {
 			this.checkout_date = checkout_date;
 		}
-		public int getPeople() {
+		public Integer getPeople() {
 			return people;
 		}
-		public void setPeople(int people) {
+		public void setPeople(Integer people) {
 			this.people = people;
 		}
-		public int getRooms() {
+		public Integer getRooms() {
 			return rooms;
 		}
-		public void setRooms(int rooms) {
+		public void setRooms(Integer rooms) {
 			this.rooms = rooms;
 		}
 		public String getStatus() {
@@ -70,7 +60,36 @@ public class ReservationResponseDTO {
 		public void setReservation_date(LocalDateTime reservation_date) {
 			this.reservation_date = reservation_date;
 		}
+		public Long getHotelId() {
+			return hotelId;
+		}
+		public void setHotelId(Long hotelId) {
+			this.hotelId = hotelId;
+		}
+		public String getHotelName() {
+			return hotelName;
+		}
+		public void setHotelName(String hotelName) {
+			this.hotelName = hotelName;
+		}
+		public String getHotelimageUrl() {
+			return hotelimageUrl;
+		}
+		public void setHotelimageUrl(String hotelimageUrl) {
+			this.hotelimageUrl = hotelimageUrl;
+		}
+		public Long getUserId() {
+			return userId;
+		}
+		public void setUserId(Long userId) {
+			this.userId = userId;
+		}
+		public String getUserName() {
+			return userName;
+		}
+		public void setUserName(String userName) {
+			this.userName = userName;
+		}
 	    
-		
-
+	    
 }
