@@ -5,7 +5,7 @@ import RegisterConfirmView from '../views/RegisterConfirmView.vue'
 import RegisterCompleteView from '../views/RegisterCompleteView.vue'
 import MainPageView from '../views/MainPageView.vue'
 // 他の必要なビューもインポート
-//import MyPageView from '../views/MyPageView.vue'
+import MyPageView from '../views/MyPageView.vue'
 import ReservationFormView from '../views/ReservationFormView.vue'
 import BookmarkListView from '../views/BookmarkListView.vue'
 import Mypageview from '../views/Mypageview.vue'
@@ -19,7 +19,7 @@ import SettingView from '../views/SettingView.vue'
 import InquiryView from '../views/InquiryView.vue'
 import LogoutView from '../views/LogoutView.vue'
 import ReservationConfirmView from '../views/ReservationConfirmView.vue'
-
+import ReservationCompleteView from '../views/ReservationCompleteView.vue'
 
 const routes = [
   -  { path: '/', redirect: '/login' },
