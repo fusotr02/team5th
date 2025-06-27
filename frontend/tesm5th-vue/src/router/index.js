@@ -1,5 +1,5 @@
 import { createRouter, createWebHistory } from 'vue-router'
-import MyPageView from '../views/MyPageView.vue'
+import MyPageView from '../views/Mypageview.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import RegisterConfirmView from '../views/RegisterConfirmView.vue'
@@ -21,7 +21,7 @@ import ReservationCompleteView from '../views/ReservationCompleteView.vue'
 import HotelDetailView from '../views/HotelDetailView.vue'
 
 const routes = [
-  { path: '/', redirect: '/main' }, // 初期表示はマイページ
+  { path: '/', redirect: '/login' }, // 初期表示はマイページ
   { path: '/main', component: MainPageView }, // ← これが追加された行です
 
   { path: '/hotels', component: MainPageView }, // ホテル一覧ページ（クエリパラメータ対応）
