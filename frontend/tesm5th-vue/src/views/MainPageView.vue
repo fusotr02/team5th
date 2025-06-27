@@ -1,48 +1,56 @@
 <template>
-  <div class="container">
-    <!-- ヘッダー -->
-    <header class="header">
-      <h1>チーム5th</h1>
-      <p class="welcome">ホテル予約サイト</p>
-    </header>
+  <div>
+    <!-- サイドメニュー -->
+    <div v-if="showMenu" class="side-menu">
+      <button class="close-btn" @click="toggleMenu">☰</button>
+      <nav>
+        <router-link to="/login" @click="toggleMenu">ログイン</router-link>
+        <router-link to="/register" @click="toggleMenu">新規登録</router-link>
+      </nav>
+    </div>
 
-    <!-- メイン -->
-    <main class="main">
-      
-      <!-- 検索エリア -->
-      <section class="search-area">
-        <h2>ホテルを探す</h2>
-        <label>エリアで探す</label>
-        <select v-model="location">
-          <option value="">選択してください</option>
-          <option v-for="pref in prefectures" :key="pref">{{ pref }}</option>
-        </select>
+    <!-- 全体ラッパー -->
+    <div class="container">
+      <!-- ヘッダー -->
+      <header class="header">
+        <button class="menu-btn" @click="toggleMenu">☰</button>
+        <h1>team5th</h1>
+        <p class="welcome">ホテル予約サイト</p>
+      </header>
 
-        <label>チェックイン日</label>
-        <input type="date" v-model="checkIn" />
+      <!-- メイン -->
+      <main class="main">
+        <!-- 検索エリア -->
+        <section class="search-area">
+          <h2>ホテルを探す</h2>
+          <label>エリアで探す</label>
+          <select v-model="location">
+            <option value="">選択してください</option>
+            <option v-for="pref in prefectures" :key="pref">{{ pref }}</option>
+          </select>
 
-        <label>チェックアウト日</label>
-        <input type="date" v-model="checkOut" />
+          <label>チェックイン日</label>
+          <input type="date" v-model="checkIn" />
 
-        <label>予約人数</label>
-        <input type="number" v-model.number="guests" min="1" placeholder="人数を入力" />
+          <label>チェックアウト日</label>
+          <input type="date" v-model="checkOut" />
 
-        <button @click="searchHotels">検索</button>
-      </section>
+          <label>予約人数</label>
+          <input type="number" v-model.number="guests" min="1" placeholder="人数を入力" />
 
-      <!-- おすすめホテル -->
-      <section class="recommend-area">
-        <h2>おすすめホテル</h2>
-        <div class="recommend-list">
-          <HotelCard
-            v-for="hotel in recommendedHotels"
-            :key="hotel.id"
-            :hotel="hotel"
-          />
-        </div>
-        <router-link to="/hotels" class="more-link">もっと見る</router-link>
-      </section>
-    </main>
+          <button @click="searchHotels">検索</button>
+        </section>
+
+        <!-- おすすめホテル -->
+        <section class="recommend-area">
+          <h2>おすすめホテル</h2>
+          <div class="recommend-list">
+            <HotelCard v-for="hotel in recommendedHotels" :key="hotel.id" :hotel="hotel" />
+          </div>
+          <router-link to="/hotels" class="more-link">もっと見る</router-link>
+        </section>
+      </main>
+    </div>
   </div>
 </template>
 
@@ -51,13 +59,17 @@ import { ref } from 'vue'
 import { useRouter } from 'vue-router'
 import HotelCard from '../components/HotelCard.vue'
 
-
 const router = useRouter()
 
 const location = ref('')
 const checkIn = ref('')
 const checkOut = ref('')
 const guests = ref(1)
+
+const showMenu = ref(false)
+const toggleMenu = () => {
+  showMenu.value = !showMenu.value
+}
 
 const prefectures = [
   '北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県',
@@ -111,12 +123,15 @@ const searchHotels = () => {
 .header {
   background-color: #1e3a8a;
   color: white;
-  padding: 16px 40px;
+  padding: 16px 24px; /* 横padding調整 */
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   z-index: 10;
+  display: flex;
+  align-items: center;
+  gap: 12px; /* ボタンとタイトルの隙間 */
 }
 
 .header h1 {
@@ -131,9 +146,11 @@ const searchHotels = () => {
 }
 
 .welcome {
-  text-align: center;
   font-size: 18px;
   margin: 4px 0 0;
+  flex-grow: 1;  
+  text-align: center; 
+
 }
 
 .main {
@@ -224,5 +241,69 @@ button:hover {
 .more-link:hover {
   text-decoration: underline;
   background-color: transparent;
+}
+
+/* メニューボタン */
+.menu-btn {
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: white;
+  cursor: pointer;
+  margin-right: 16px;
+  position: relative;
+  z-index: 11;
+}
+
+/* サイドメニュー */
+.side-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 220px;
+  height: 100vh;
+  background-color: #1e3a8a;
+  color: white;
+  padding: 2rem 1rem;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  box-shadow: 2px 0 10px rgba(0,0,0,0.2);
+}
+
+.side-menu .close-btn {
+  background: none;
+  border: none;
+  color: white;
+  font-size: 24px;
+  align-self: flex-end;
+  cursor: pointer;
+}
+
+.side-menu a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.side-menu a:hover {
+  text-decoration: underline;
+}
+
+.side-menu nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px; /* リンク間の上下の余白 */
+  padding-left: 16px;
+}
+
+.side-menu nav a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 18px;
+  padding-bottom: 8px;
 }
 </style>
