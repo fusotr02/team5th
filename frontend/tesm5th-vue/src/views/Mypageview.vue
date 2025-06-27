@@ -3,7 +3,7 @@
     <!-- ヘッダー -->
     <header class="header">
       <h1>ホテル予約サイト</h1>
-      <p class="welcome">ようこそ、○○さん！</p>  <!--<p class="welcome">ようこそ、{{ username }} さん！</p>-->
+      <p class="welcome">ようこそ、{{ username }} さん！</p>
     </header>
 
     <!-- メイン -->
@@ -43,7 +43,7 @@ import { RouterLink } from 'vue-router'
 //import { ref, onMounted } from 'vue'
 import bannerImage from '@/assets/premium_photo-1661914240950-b0124f20a5c1.avif'
 
-/*
+
 const username = ref('ゲスト') // 初期値
 
 onMounted(() => {
@@ -57,8 +57,6 @@ onMounted(() => {
     }
   }
 })
-*/
-
 </script>
 
 <style>
@@ -83,12 +81,6 @@ onMounted(() => {
   left: 0;
   width: 100%;
   z-index: 10;
-}
-
-.header h1 {
-  margin: 0;
-  font-size: 24px;
-  text-align: left;
 }
 
 .welcome {
