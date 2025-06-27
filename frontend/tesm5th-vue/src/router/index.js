@@ -20,15 +20,15 @@ import ReservationConfirmView from '../views/ReservationConfirmView.vue'
 import ReservationCompleteView from '../views/ReservationCompleteView.vue'
 
 const routes = [
-  { path: '/', redirect: '/mypage' }, // 初期表示はマイページ
-  { path: '/mypage', component: MyPageView }, // ← これが追加された行です
+  { path: '/', redirect: '/main' }, // 初期表示はマイページ
+  { path: '/main', component: MainPageView }, // ← これが追加された行です
 
   { path: '/login', component: LoginView },
   { path: '/register', component: RegisterView },
   { path: '/register/confirm', name: 'RegisterConfirm', component: RegisterConfirmView },
   { path: '/register/complete', component: RegisterCompleteView },
 
-  { path: '/main', component: MainPageView },
+  { path: '/mypage', component: MyPageView },
   { path: '/reservation', component: ReservationView },
   { path: '/reservationedit/:id', component: ReservationEditView },
   { path: '/reservation/new', component: ReservationFormView },
