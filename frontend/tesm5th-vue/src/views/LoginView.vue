@@ -13,23 +13,19 @@
       </div>
     </header>
 
-    <!-- 新規登録フォーム -->
+    <!-- ログインフォーム -->
     <div class="register-container">
-      <h2>新規登録</h2>
-      <form @submit.prevent="goToConfirm" class="register-form">
-        <div class="form-group">
-          <label>名前：</label>
-          <input v-model="form.name" required />
-        </div>
+      <h2>ログイン</h2>
+      <form @submit.prevent="handleLogin" class="register-form">
         <div class="form-group">
           <label>メールアドレス：</label>
-          <input v-model="form.email" type="email" required />
+          <input v-model="email" type="email" required />
         </div>
         <div class="form-group">
           <label>パスワード：</label>
-          <input v-model="form.password" type="password" required />
+          <input v-model="password" type="password" required />
         </div>
-        <button type="submit">確認</button>
+        <button type="submit">ログイン</button>
 
         <router-link to="/" class="back-button">トップページへ戻る</router-link>
       </form>
@@ -40,17 +36,24 @@
 <script setup>
 import { ref } from 'vue'
 import { useRouter } from 'vue-router'
+import axios from 'axios'
 
 const router = useRouter()
+const email = ref('')
+const password = ref('')
 
-const form = ref({
-  name: '',
-  email: '',
-  password: ''
-})
-
-const goToConfirm = () => {
-  router.push({ name: 'RegisterConfirm', state: form.value })
+const handleLogin = async () => {
+  try {
+    const response = await axios.post('/api/auth/login', {
+      email: email.value,
+      password: password.value
+    })
+    // ログイン成功時の処理（トークン保存やページ遷移など）
+    router.push('/mypage')
+  } catch (error) {
+    alert('ログインに失敗しました。メールアドレスとパスワードを確認してください。')
+    console.error(error)
+  }
 }
 </script>
 
@@ -101,11 +104,11 @@ const goToConfirm = () => {
   font-size: 24px;
 }
 
-/* 登録フォーム */
+/* フォーム */
 .register-container {
   max-width: 400px;
   margin: 40px auto;
-  padding: 2.5rem 2rem; /* 少し余裕持たせる */
+  padding: 2.5rem 2rem;
   background: #ffffff;
   border-radius: 8px;
   box-shadow: 0 0 12px rgba(0, 0, 0, 0.1);
@@ -115,7 +118,7 @@ const goToConfirm = () => {
 .register-form {
   display: flex;
   flex-direction: column;
-  gap: 1.5rem; /* 入力欄同士の間隔は1.5remで */
+  gap: 1.5rem;
 }
 
 .form-group {
@@ -130,7 +133,7 @@ label {
 }
 
 input {
-  padding: 10px 12px; /* 少し高さアップ */
+  padding: 10px 12px;
   border: 1px solid #ccc;
   border-radius: 6px;
   font-size: 1rem;
