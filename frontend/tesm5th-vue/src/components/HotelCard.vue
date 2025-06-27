@@ -1,86 +1,100 @@
 <template>
-    <div class="hotel-card"@click="goToDetail">
+  <div class="card">
+    <img :src="hotel.imageUrl" alt="ホテル画像" class="hotel-image" />
 
-    <!-- ❤️ ブックマークボタン -->
-    <button class="bookmark-btn" @click.stop="toggleBookmark">
-      {{ isBookmarked ? '♥' : '♡' }}
-    </button>
+    <div class="info">
+      <h2>{{ hotel.name }}</h2>
 
-        <img :src="hotel.image" alt="ホテル画像">
-        <h3>{{ hotel.name }}</h3>
-        <p>{{ hotel.location }}</p>
-        <p>\{{ hotel.price }}円</p>
-        <button @click.stop="goToDetail">詳細を見る</button>
+      <div class="actions">
+        <button @click="toggleBookmark" class="heart-button">
+          <span v-if="bookmarked">❤️</span>
+          <span v-else>🤍</span>
+        </button>
+
+        <router-link :to="`/hotel/${hotel.id}`" class="detail-button">
+          詳細を表示 ➡
+        </router-link>
+      </div>
     </div>
+  </div>
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import {useRouter} from 'vue-router'
+import { ref, watch, defineProps, defineEmits } from 'vue'
+
 const props = defineProps({
-    hotel:Object
+  hotel: {
+    type: Object,
+    required: true
+  },
+  isBookmarked: {
+    type: Boolean,
+    required: true
+  }
 })
 
-const router = useRouter()
-function goToDetail() {
-  router.push(`/hotel/${props.hotel.id}`)
-}
+const emit = defineEmits(['toggle'])
 
-// 仮のローカル状態（♥か♡を切り替えるだけ）
-const isBookmarked = ref(false)
-function toggleBookmark() {
-  isBookmarked.value = !isBookmarked.value
+const bookmarked = ref(props.isBookmarked)
+
+// 親から更新される場合に備えて監視
+watch(() => props.isBookmarked, (newVal) => {
+  bookmarked.value = newVal
+})
+
+// ハートボタンクリック
+const toggleBookmark = () => {
+  bookmarked.value = !bookmarked.value
+  emit('toggle', { hotelId: props.hotel.id, bookmarked: bookmarked.value })
 }
 </script>
 
 <style scoped>
-.hotel-card{
-    border: 1px soild #ccc;
-    padding: 1rem;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: transform 0.2s box-shadow 0.2s;
-    max-width: 300px;
+.card {
+  display: flex;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 16px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
 }
 
-.hotel-card:hover{
-    transform: scale(1.02);
-    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+.hotel-image {
+  width: 180px;
+  height: 120px;
+  object-fit: cover;
 }
 
-.hotel-card img{
-    width: 100%;
-    height: 180px;
-    object-fit: cover;
-    border-radius: 4px;
+.info {
+  padding: 16px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
-button{
-    margin-top: 0.5rem;
-    padding: 0.5rem;
-    background-color: #1976b2;
-    color: white;
-    border: none;
-    border-radius: 4px;
+.actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
-button:hover{
-    background-color: #1259a3;
-}
-
-/* ❤️ ハートボタン */
-.bookmark-btn {
-  position: absolute;
-  top: 12px;
-  right: 12px;
+.heart-button {
+  font-size: 24px;
   background: none;
   border: none;
-  font-size: 20px;
-  color: #e53935;
   cursor: pointer;
 }
 
-.bookmark-btn:hover {
-  transform: scale(1.2);
+.detail-button {
+  text-decoration: none;
+  color: #1e3a8a;
+  font-weight: bold;
+}
+
+.detail-button:hover {
+  text-decoration: underline;
+  background-color: transparent;
 }
 </style>

@@ -1,52 +1,63 @@
 <template>
-  <div class="search-area">
-    <section class="search-area">
-      <label>エリアで探す</label>
-      <option value="">選択してください</option>
-      <option v-for="pref in prefectures" :key="pref">{{ pref }}</option>
-    </section>
-    <label>チェックイン日</label>
-    <input type="date" v-model="checkIn" />
+  <div class="container">
+    <!-- ヘッダー -->
+    <header class="header">
+      <h1>チーム5th</h1>
+      <p class="welcome">ホテル予約サイト</p>
+    </header>
 
-    <label>チェックアウト日</label>
-    <input type="date" v-model="checkOut" />
+    <!-- メイン -->
+    <main class="main">
+      
+      <!-- 検索エリア -->
+      <section class="search-area">
+        <h2>ホテルを探す</h2>
+        <label>エリアで探す</label>
+        <select v-model="location">
+          <option value="">選択してください</option>
+          <option v-for="pref in prefectures" :key="pref">{{ pref }}</option>
+        </select>
 
-    <label>予約人数</label>
-    <input type="number" v-model.number="guests" min="1" placeholder="人数を入力"/>
+        <label>チェックイン日</label>
+        <input type="date" v-model="checkIn" />
 
-    <button @click="searchHotels">検索</button>
+        <label>チェックアウト日</label>
+        <input type="date" v-model="checkOut" />
 
-    <section class="recommend-area">
-      <h2>おすすめホテル</h2>
-      <div class="recommend-area">
-        <HotelCard
-          v-for="hotel in recommendedHotels"
-          :key="hotel.id"
-          :hotel="hotel"
-        />
-      </div>
-      <router-link to="/hotels" class="more-link">もっと見る</router-link>
-    </section>
+        <label>予約人数</label>
+        <input type="number" v-model.number="guests" min="1" placeholder="人数を入力" />
+
+        <button @click="searchHotels">検索</button>
+      </section>
+
+      <!-- おすすめホテル -->
+      <section class="recommend-area">
+        <h2>おすすめホテル</h2>
+        <div class="recommend-list">
+          <HotelCard
+            v-for="hotel in recommendedHotels"
+            :key="hotel.id"
+            :hotel="hotel"
+          />
+        </div>
+        <router-link to="/hotels" class="more-link">もっと見る</router-link>
+      </section>
+    </main>
   </div>
 </template>
 
-
 <script setup>
-import {ref} from 'vue' ;
-import {useRouter} from 'vue-router';
-import HotelCard from '../components/HotelCard.vue';
+import { ref } from 'vue'
+import { useRouter } from 'vue-router'
+import HotelCard from '../components/HotelCard.vue'
 
-const router=useRouter()
+
+const router = useRouter()
 
 const location = ref('')
 const checkIn = ref('')
 const checkOut = ref('')
 const guests = ref(1)
-
-// const toggleRegionList=()=>{
-//     selectedRegion.value=region
-//     showRegions.value=false
-// }
 
 const prefectures = [
   '北海道', '青森県', '岩手県', '宮城県', '秋田県', '山形県', '福島県',
@@ -79,13 +90,81 @@ const searchHotels = () => {
 </script>
 
 <style scoped>
-.search-area {
+.container {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #ffffff;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 1.5rem;
-  background: #f9f9f9;
+  padding-left: 10px;
+}
+
+.banner {
+  width: 900px;
+  height: 40vh;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 32px;
+}
+
+/* ヘッダー */
+.header {
+  background-color: #1e3a8a;
+  color: white;
+  padding: 16px 40px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 10;
+}
+
+.header h1 {
+  margin: 0;
+  font-size: 24px;
+  text-align: left;
+}
+
+.header p {
+  margin: 0;
+  font-size: 25px;
+}
+
+.welcome {
+  text-align: center;
+  font-size: 18px;
+  margin: 4px 0 0;
+}
+
+.main {
+  flex: 1;
+  padding: 32px 24px;
+  margin-top: 96px; /* ヘッダー高さ分 */
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  background-color: #ffffff;
+}
+
+.search-area {
+  background: white;
+  padding: 2rem;
   border-radius: 8px;
+  max-width: 900px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.2rem;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.06);
+}
+
+.search-area h2 {
+  color: #1e3a8a;
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
 }
 
 label {
@@ -106,6 +185,7 @@ button {
   border-radius: 4px;
   cursor: pointer;
   font-weight: bold;
+  transition: background-color 0.3s ease;
 }
 
 button:hover {
@@ -113,20 +193,36 @@ button:hover {
 }
 
 .recommend-area {
-  margin-top: 2rem;
+  margin-top: 3rem;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.recommend-area h2 {
+  color: #1e3a8a;
+  margin-bottom: 1rem;
+  font-size: 20px;
 }
 
 .recommend-list {
   display: flex;
   flex-wrap: wrap;
   gap: 1rem;
+  justify-content: center;
 }
 
 .more-link {
   display: inline-block;
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   color: #1976d2;
   font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+.more-link:hover {
+  text-decoration: underline;
+  background-color: transparent;
 }
 </style>
-
