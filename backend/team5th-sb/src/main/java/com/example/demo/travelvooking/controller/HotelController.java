@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.travelvooking.dto.HotelResponse;
@@ -28,5 +29,12 @@ public class HotelController {
 	    @GetMapping("/{id}")
 	    public HotelResponse getHotelById(@PathVariable Long id) {
 	        return hotelService.getHotelByID(id);
+	    }
+	    
+	    @GetMapping
+	    public List<HotelResponse> getAllHotels(
+	            @RequestParam(required = false) String name,
+	            @RequestParam(required = false) String region) {
+	        return hotelService.searchHotels(name, region);
 	    }
 }
