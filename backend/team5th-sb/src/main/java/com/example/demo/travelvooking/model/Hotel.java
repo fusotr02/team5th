@@ -14,12 +14,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-
 public class Hotel {
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	
-	@Column(name = "ホテルID")
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "ホテルID")
     private Long id;
 
     @Column(name = "ホテル名", nullable = false, length = 255)
@@ -27,6 +26,9 @@ public class Hotel {
 
     @Column(name = "住所", nullable = false, length = 255)
     private String location;
+
+    @Column(name = "都道府県", nullable = false, length = 100)
+    private String region;  // ← 追加：検索用の都道府県フィールド
 
     @Column(name = "写真URL", columnDefinition = "TEXT")
     private String imageUrl;
@@ -37,3 +39,4 @@ public class Hotel {
     @Column(name = "宿泊料金", nullable = false, precision = 10, scale = 2)
     private Double price;
 }
+
