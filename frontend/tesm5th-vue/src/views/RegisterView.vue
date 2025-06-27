@@ -5,40 +5,18 @@
 
     <!-- サイドバー -->
     <div class="sidebar" :class="{ open: isSidebarOpen }">
-      <router-link to="/login"><button>ログイン</button></router-link>
-      <router-link to="/register"><button>新規登録</button></router-link>
-      <div class="sidebar-footer">
-        <button class="back-button" @click="toggleSidebar">戻る</button>
-      </div>
+      <button @click="navigateTo('/login')">ログイン</button>
+      <button @click="navigateTo('/register')">新規登録</button>
+      <button @click="toggleSidebar" class="back-button">戻る</button>
     </div>
 
+    <!-- メイン登録フォーム -->
     <h2>新規登録</h2>
-
-    <form @submit.prevent="handleConfirm" class="register-form">
-      <input
-        type="text"
-        v-model="name"
-        placeholder="名前"
-        required
-        class="input-compact"
-      />
-      <input
-        type="email"
-        v-model="email"
-        placeholder="メールアドレス"
-        required
-        class="input-compact"
-      />
-      <input
-        type="password"
-        v-model="password"
-        placeholder="パスワード"
-        required
-        class="input-compact"
-      />
-      <div class="center-button-wrapper">
-        <button type="submit" class="btn-compact">確認</button>
-      </div>
+    <form @submit.prevent="handleConfirm">
+      <input type="text" v-model="name" placeholder="名前" required />
+      <input type="email" v-model="email" placeholder="メールアドレス" required />
+      <input type="password" v-model="password" placeholder="パスワード" required />
+      <button type="submit">確認</button>
     </form>
   </div>
 </template>
@@ -57,6 +35,11 @@ const toggleSidebar = () => {
   isSidebarOpen.value = !isSidebarOpen.value
 }
 
+const navigateTo = (path) => {
+  router.push(path)
+  isSidebarOpen.value = false
+}
+
 const handleConfirm = () => {
   router.push({
     name: 'RegisterConfirm',
@@ -70,23 +53,30 @@ const handleConfirm = () => {
 </script>
 
 <style scoped>
+:global(html, body) {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
 .register-container {
   position: relative;
   width: 100vw;
   height: 100vh;
-  padding: 30px;
+  padding: 40px;
   box-sizing: border-box;
-  font-family: sans-serif;
   text-align: center;
+  font-family: sans-serif;
   overflow: hidden;
+  background-color: #f9f9f9;
 }
 
-/* ハンバーガー */
+/* ハンバーガーアイコン */
 .menu-icon {
   text-align: left;
   font-size: 24px;
+  margin-bottom: 20px;
   cursor: pointer;
-  margin-bottom: 10px;
 }
 
 /* サイドバー */
@@ -108,44 +98,31 @@ const handleConfirm = () => {
 }
 .sidebar button {
   width: 100%;
-  padding: 5px;
+  padding: 10px;
   margin-bottom: 10px;
-  font-size: 12px;
   background-color: white;
   border: 1px solid #333;
   cursor: pointer;
 }
-.sidebar-footer {
-  margin-top: calc(auto - 40px); /* 通常の auto より少し上に */
-}
 .back-button {
-  width: 100%;
+  margin-top: calc(100% - 45px); /* 戻るボタンの位置を少し下へ */
 }
 
-/* 入力フォーム */
-h2 {
-  margin-bottom: 20px;
-  font-size: 24px;
-}
-.input-compact {
+/* 入力欄とボタンのサイズ調整（1/2サイズ） */
+input {
   display: block;
-  width: 25%;
-  padding: 4px;
+  width: 25%; /* ログイン画面と同様 */
+  padding: 10px;
   margin: 10px auto;
   border: 1px solid #233;
-  font-size: 10px;
+  font-size: 16px;
+  box-sizing: border-box;
 }
-
-/* ボタンを中央に */
-.center-button-wrapper {
-  display: flex;
-  justify-content: center;
-}
-.btn-compact {
+button {
   width: 25%;
-  padding: 5px;
-  margin-top: 10px;
-  font-size: 10px;
+  padding: 10px;
+  margin: 10px auto;
+  font-size: 16px;
   border: 1px solid #233;
   background-color: white;
   cursor: pointer;
