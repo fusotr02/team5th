@@ -18,8 +18,7 @@
 
 <script>
 import axios from 'axios'
-import { mapMutations } from 'vuex'
-
+import { mapMutations } from 'vuex' 
 export default {
   data() {
     return {
@@ -39,10 +38,10 @@ export default {
         this.setUser(response.data)
         this.$router.push('/main')
       } catch (err) {
+        console.error(err)
         this.error = 'ログインに失敗しました'
       }
     }
   }
 }
 </script>
-
