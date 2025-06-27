@@ -17,11 +17,7 @@
 import { format } from 'date-fns'
 import ja from 'date-fns/locale/ja'
 
-defineProps({
-  reservation: Object
-})
-
-// props を受け取る（このままでOK）
+// definePropsは1回だけでOK
 const props = defineProps({
   reservation: Object
 })
