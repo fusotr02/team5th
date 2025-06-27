@@ -23,16 +23,23 @@ import HotelCard from '../components/HotelCard.vue'
 
 const hotels = ref([])
 const router = useRouter()
+const route = useRoute()
 
-onMounted(async () => {
+const fetchHotels = async () => {
   try {
-    const response = await axios.get('/api/hotels') // Spring Boot 側のエンドポイント
+    const location = route.query.location || ''
+    const response = await axios.get('/api/hotels', {
+      params: {
+        location: location
+      }
+    })
     hotels.value = response.data
+    hasError.value = false
   } catch (error) {
     console.error('ホテル一覧取得失敗:', error)
     hasError.value = true
   }
-})
+}
 
 // const goToDetail = (hotelId) => {
 //   router.push(`/hotel/${hotelId}`) // 例: /hotel/3 → HotelDetailViewへ

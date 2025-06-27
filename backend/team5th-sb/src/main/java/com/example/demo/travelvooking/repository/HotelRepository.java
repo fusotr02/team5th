@@ -16,4 +16,12 @@ public interface HotelRepository extends JpaRepository<Hotel,Long>{
 
     // 地域で絞り込み
     List<Hotel> findByRegion(String region);
+    
+
+    // キーワード + 地域 の複合検索（追加）
+    List<Hotel> findByNameContainingOrAddressContainingOrDescriptionContainingAndRegion(
+            String name, String address, String description, String region);
+
+    //部分一致で検索可能        
+    List<Hotel> findByLocationContaining(String location);
 }

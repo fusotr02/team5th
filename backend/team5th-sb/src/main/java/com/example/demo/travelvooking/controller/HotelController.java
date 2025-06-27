@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.travelvooking.dto.HotelResponse;
@@ -15,18 +16,20 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/hotels")
-
 public class HotelController {
-	 private final HotelService hotelService;
 
-	 
-	    @GetMapping
-	    public List<HotelResponse> getAllHotels() {
-	        return hotelService.getAllHotels();
-	    }
+    private final HotelService hotelService;
 
-	    @GetMapping("/{id}")
-	    public HotelResponse getHotelById(@PathVariable Long id) {
-	        return hotelService.getHotelByID(id);
-	    }
+    @GetMapping
+    public List<HotelResponse> getHotels(@RequestParam(required = false) String location) {
+        if (location != null && !location.isEmpty()) {
+            return hotelService.getHotelsByLocation(location);
+        }
+        return hotelService.getAllHotels();
+    }
+
+    @GetMapping("/{id}")
+    public HotelResponse getHotelById(@PathVariable Long id) {
+        return hotelService.getHotelByID(id);
+    }
 }
