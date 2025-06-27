@@ -20,6 +20,7 @@
 
     <p class="signup-text">アカウントをまだ作成していない方はこちら</p>
     <router-link to="/register">
+
       <button class="signup-button">新規登録</button>
     </router-link>
   </div>
@@ -36,6 +37,9 @@ const isSidebarOpen = ref(false)
 
 const toggleSidebar = () => {
   isSidebarOpen.value = !isSidebarOpen.value
+}
+const goToRegister = () => {
+  router.push('/register')
 }
 
 const navigateTo = (path) => {
