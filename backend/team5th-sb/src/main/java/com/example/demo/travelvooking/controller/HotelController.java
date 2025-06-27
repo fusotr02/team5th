@@ -16,25 +16,20 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/api/hotels")
-
 public class HotelController {
-	 private final HotelService hotelService;
 
-	 
-	    @GetMapping
-	    public List<HotelResponse> getAllHotels() {
-	        return hotelService.getAllHotels();
-	    }
+    private final HotelService hotelService;
 
-	    @GetMapping("/{id}")
-	    public HotelResponse getHotelById(@PathVariable Long id) {
-	        return hotelService.getHotelByID(id);
-	    }
-	    
-	    @GetMapping
-	    public List<HotelResponse> getAllHotels(
-	            @RequestParam(required = false) String name,
-	            @RequestParam(required = false) String region) {
-	        return hotelService.searchHotels(name, region);
-	    }
+    @GetMapping
+    public List<HotelResponse> getHotels(@RequestParam(required = false) String location) {
+        if (location != null && !location.isEmpty()) {
+            return hotelService.getHotelsByLocation(location);
+        }
+        return hotelService.getAllHotels();
+    }
+
+    @GetMapping("/{id}")
+    public HotelResponse getHotelById(@PathVariable Long id) {
+        return hotelService.getHotelByID(id);
+    }
 }
