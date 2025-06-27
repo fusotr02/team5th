@@ -22,7 +22,7 @@ import axios from 'axios'
 import HotelCard from '../components/HotelCard.vue'
 
 const hotels = ref([])
-const hasError = ref(false) // ← これが抜けていた
+const hasError = ref(false) 
 const route = useRoute()
 const router = useRouter()
 
@@ -40,9 +40,7 @@ const fetchHotels = async () => {
   }
 }
 
-onMounted(fetchHotels) // ← これがないと実行されない
-
-
+onMounted(fetchHotels) 
 
 // const goToDetail = (hotelId) => {
 //   router.push(`/hotel/${hotelId}`) // 例: /hotel/3 → HotelDetailViewへ
