@@ -22,9 +22,14 @@ import ReservationConfirmView from '../views/ReservationConfirmView.vue'
 
 
 const routes = [
+  -  { path: '/', redirect: '/login' },
+  +  { path: '/', redirect: '/mypage' },
+  { path: '/', redirect: '/mypage' },
+  { path: '/mypage', component: Mypageview },
   { path: '/', redirect: '/login' },
   { path: '/login', component: LoginView },
   { path: '/register', component: RegisterView },
+  { path: '/', redirect: '/login' },
   { path: '/register/confirm', name: 'RegisterConfirm', component: RegisterConfirmView },
   { path: '/register/complete', component: RegisterCompleteView },
   { path: '/main',   component: MainPageView },
