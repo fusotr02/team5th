@@ -1,28 +1,49 @@
 import { createRouter, createWebHistory } from 'vue-router'
+import MyPageView from '../views/MyPageView.vue'
 import LoginView from '../views/LoginView.vue'
 import RegisterView from '../views/RegisterView.vue'
 import RegisterConfirmView from '../views/RegisterConfirmView.vue'
 import RegisterCompleteView from '../views/RegisterCompleteView.vue'
 import MainPageView from '../views/MainPageView.vue'
-// 他の必要なビューもインポート
-//import MyPageView from '../views/MyPageView.vue'
 import ReservationFormView from '../views/ReservationFormView.vue'
 import BookmarkListView from '../views/BookmarkListView.vue'
+import ReservationView from '../views/ReservationView.vue'
+import ReservationEditView from '../views/ReservationEditView.vue'
+import ProfileView from '../views/ProfileView.vue'
+import SecurityView from '../views/SecurityView.vue'
+import PaymentView from '../views/PaymentView.vue'
+import PointView from '../views/PointView.vue'
+import SettingView from '../views/SettingView.vue'
+import InquiryView from '../views/InquiryView.vue'
+import LogoutView from '../views/LogoutView.vue'
+import ReservationConfirmView from '../views/ReservationConfirmView.vue'
+import ReservationCompleteView from '../views/ReservationCompleteView.vue'
 
 const routes = [
-  { path: '/', redirect: '/login' },
+  { path: '/', redirect: '/mypage' }, // 初期表示はマイページ
+  { path: '/mypage', component: MyPageView }, // ← これが追加された行です
+
   { path: '/login', component: LoginView },
   { path: '/register', component: RegisterView },
   { path: '/register/confirm', name: 'RegisterConfirm', component: RegisterConfirmView },
   { path: '/register/complete', component: RegisterCompleteView },
+
   { path: '/main', component: MainPageView },
-  { path: '/mypage', component: MyPageView },
+  { path: '/reservation', component: ReservationView },
+  { path: '/reservationedit/:id', component: ReservationEditView },
   { path: '/reservation/new', component: ReservationFormView },
-  { path: '/bookmarks', component: BookmarkListView },
-  {path: '/reservation/form', name: 'ReservationForm',component: ReservationFormView},
-  {path: '/reservation/confirm',name: 'ReservationConfirm',component: ReservationConfirmView},
-  {path: '/reservation/complete',name: 'ReservationComplete',component: ReservationCompleteView}
-  // 必要に応じて他のルートも追加
+  { path: '/reservation/form', name: 'ReservationForm', component: ReservationFormView },
+  { path: '/reservation/confirm', name: 'ReservationConfirm', component: ReservationConfirmView },
+  { path: '/reservation/complete', name: 'ReservationComplete', component: ReservationCompleteView },
+
+  { path: '/profile', component: ProfileView },
+  { path: '/security', component: SecurityView },
+  { path: '/payment', component: PaymentView },
+  { path: '/point', component: PointView, meta: { requiresAuth: true } },
+  { path: '/settings', component: SettingView },
+  { path: '/inquiry', component: InquiryView },
+  { path: '/logout', component: LogoutView },
+  { path: '/bookmark', component: BookmarkListView }
 ]
 
 const router = createRouter({
