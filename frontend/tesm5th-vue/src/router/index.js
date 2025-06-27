@@ -8,8 +8,18 @@ import MainPageView from '../views/MainPageView.vue'
 import MyPageView from '../views/MyPageView.vue'
 import ReservationFormView from '../views/ReservationFormView.vue'
 import BookmarkListView from '../views/BookmarkListView.vue'
+import Mypageview from '../views/Mypageview.vue'
 import ReservationView from '../views/ReservationView.vue'
 import ReservationEditView from '../views/ReservationEditView.vue'
+import ProfileView from '../views/ProfileView.vue'
+import SecurityView from '../views/SecurityView.vue'
+import PaymentView from '../views/PaymentView.vue'
+import PointView from '../views/PointView.vue'
+import SettingView from '../views/SettingView.vue'
+import InquiryView from '../views/InquiryView.vue'
+import LogoutView from '../views/LogoutView.vue'
+import ReservationConfirmView from '../views/ReservationConfirmView.vue'
+import ReservationCompleteView from '../views/ReservationCompleteView.vue'
 
 const routes = [
   { path: '/', redirect: '/login' },
@@ -17,8 +27,8 @@ const routes = [
   { path: '/register', component: RegisterView },
   { path: '/register/confirm', name: 'RegisterConfirm', component: RegisterConfirmView },
   { path: '/register/complete', component: RegisterCompleteView },
-  { path: '/main', component: MainPageView },
-  { path: '/mypage', component: MyPageView },
+  { path: '/main',   component: MainPageView },
+  { path: '/mypage', component: Mypageview },
   { path:'/reservation', component: ReservationView.vue },
   { path: '/reservationedit/:id', component: ReservationEditView.vue },
   { path: '/reservation/new', component: ReservationFormView },
