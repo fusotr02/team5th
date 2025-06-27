@@ -95,6 +95,7 @@ function cancelReservation() {
   overflow: hidden;
   display: flex;
   flex-direction: column;
+  background-color: #ffffff;
 }
 
 .header {
@@ -123,6 +124,11 @@ function cancelReservation() {
 .link {
   text-decoration: underline;
   color: #bbdefb;
+}
+
+.nav-link:hover {
+  text-decoration: underline;
+  background-color: transparent;
 }
 
 .body {

@@ -2,36 +2,12 @@ package com.example.demo.travelvooking.dto;
 
 import java.util.Date;
 
-import com.example.demo.travelvooking.model.Hotel;
-import com.example.demo.travelvooking.model.User;
-
 public class ReservationUpdateRequest {
-	private Long id;
-    private User user;
-    private Hotel hotel;
 	private Date checkin_date;
 	private Date checkout_date;
 	private int people;
 	private int rooms;
-	private String status;
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public User getUser() {
-		return user;
-	}
-	public void setUser(User user) {
-		this.user = user;
-	}
-	public Hotel getHotel() {
-		return hotel;
-	}
-	public void setHotel(Hotel hotel) {
-		this.hotel = hotel;
-	}
+	
 	public Date getCheckin_date() {
 		return checkin_date;
 	}
@@ -55,12 +31,6 @@ public class ReservationUpdateRequest {
 	}
 	public void setRooms(int rooms) {
 		this.rooms = rooms;
-	}
-	public String getStatus() {
-		return status;
-	}
-	public void setStatus(String status) {
-		this.status = status;
 	}
 	
 
