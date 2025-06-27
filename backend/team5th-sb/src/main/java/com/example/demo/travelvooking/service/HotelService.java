@@ -31,23 +31,11 @@ public class HotelService {
 		return convertToResponse(hotel);
 	}
 
-	public List<HotelResponse> searchHotels(String name, String region) {
-	    List<Hotel> hotels;
-
-	    if ((name == null || name.isEmpty()) && (region == null || region.isEmpty())) {
-	        hotels = hotelRepository.findAll();
-	    } else if (name != null && !name.isEmpty() && (region == null || region.isEmpty())) {
-	        hotels = hotelRepository.findByNameContainingOrAddressContainingOrDescriptionContaining(name, name, name);
-	    } else if ((name == null || name.isEmpty()) && region != null && !region.isEmpty()) {
-	        hotels = hotelRepository.findByRegion(region);
-	    } else {
-	        hotels = hotelRepository.findByNameContainingOrAddressContainingOrDescriptionContainingAndRegion(name, name, name, region);
-	    }
-
-	    return hotels.stream()
-	            .map(this::convertToResponse)
-	            .collect(Collectors.toList());
-	}
+	public List<HotelResponse> getHotelsByLocation(String location) {
+        return hotelRepository.findByLocationContaining(location).stream()
+                .map(this::convertToResponse)
+                .collect(Collectors.toList());
+    }
 	
 	private HotelResponse convertToResponse(Hotel hotel) {
 		return new HotelResponse(
