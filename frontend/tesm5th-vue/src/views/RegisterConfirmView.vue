@@ -37,7 +37,7 @@ export default {
   },
   methods: {
     async handleRegister() {
-      await axios.post('/api/auth/register', this.form)
+      await axios.post('http://localhost:8080/api/auth/register', this.form)
       this.$router.push('/register/complete')
     }
   }
