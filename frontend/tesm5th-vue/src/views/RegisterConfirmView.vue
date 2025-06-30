@@ -32,13 +32,22 @@ import axios from 'axios'
 export default {
   data() {
     return {
-      form: history.state
+      form: {
+        name: this.$route.query.name || '',
+        email: this.$route.query.email || '',
+        password: this.$route.query.password || ''
+      }
     }
   },
   methods: {
     async handleRegister() {
-      await axios.post('http://localhost:8080/api/auth/register', this.form)
-      this.$router.push('/register/complete')
+      try {
+        await axios.post('http://localhost:8080/api/auth/register', this.form)
+        this.$router.push('/register/complete')
+      } catch (err) {
+        alert('登録に失敗しました')
+        console.error(err)
+      }
     }
   }
 }
