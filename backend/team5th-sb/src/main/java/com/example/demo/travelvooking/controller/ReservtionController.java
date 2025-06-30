@@ -24,7 +24,7 @@ public class ReservtionController {
 	
 	@GetMapping("/user/{userId}")
 	public List<ReservationResponseDTO> getReservationByUserId(@PathVariable int userId){
-		return reservationService.getReservationByUser(userId);
+		return reservationService.getReservationByUserId(userId);
 	}
 	
 	@GetMapping("/id/{id}")
