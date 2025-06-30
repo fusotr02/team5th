@@ -27,7 +27,12 @@
         </div>
         <button type="submit">ログイン</button>
 
-        <router-link to="/" class="back-button">トップページへ戻る</router-link>
+        <p class="register-message">
+          登録がまだお済みでない方は<br />
+          <router-link to="/register" class="register-link">新規登録はこちら</router-link>
+        </p>
+
+        <router-link to="/main" class="back-button">トップページへ戻る</router-link>
       </form>
     </div>
   </div>
@@ -44,7 +49,7 @@ const password = ref('')
 
 const handleLogin = async () => {
   try {
-    const response = await axios.post('/api/auth/login', {
+    const response = await axios.post('http://localhost:8080/auth/login', {
       email: email.value,
       password: password.value
     })
@@ -160,7 +165,7 @@ button[type="submit"]:hover {
 /* トップページに戻るリンク */
 .back-button {
   display: inline-block;
-  margin-top: 1.8rem;
+  margin-top: 0.5rem;
   color: #1976d2;
   font-weight: bold;
   text-decoration: none;
@@ -172,5 +177,17 @@ button[type="submit"]:hover {
 
 .back-button:hover {
   background-color: #e3f2fd;
+}
+
+.register-message {
+  margin-top: 0.5rem;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.register-link {
+  color: #1976d2;
+  text-decoration: underline;
+  font-weight: bold;
 }
 </style>
