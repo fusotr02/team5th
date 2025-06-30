@@ -4,6 +4,7 @@ INSERT INTO hotel (name, location, region, image_url, description, price) VALUES
 ('岩手リゾートホテル', '岩手県盛岡市中央通', '岩手県', 'https://example.com/iwate.jpg', '自然に囲まれた静かな宿。', 9000),
 ('宮城シティホテル', '宮城県仙台市青葉区', '宮城県', 'https://example.com/miyagi.jpg', '仙台駅近くの便利な立地。', 9800),
 ('秋田温泉旅館', '秋田県秋田市中通', '秋田県', 'https://example.com/akita.jpg', '温泉と郷土料理が楽しめる。', 8700),
+<<<<<<< HEAD
 ('山形スカイホテル', '山形県山形市香澄町', '山形県', 'https://example.com/yamagata.jpg', '蔵王観光の拠点に最適。', 9200),
 ('福島ビジネスホテル', '福島県福島市大町', '福島県', 'https://example.com/fukushima.jpg', '出張に便利な快適ホテル。', 8000),
 ('茨城コンフォートイン', '茨城県水戸市南町', '茨城県', 'https://example.com/ibaraki.jpg', '駅から徒歩5分の好立地。', 8800),
@@ -49,3 +50,9 @@ INSERT INTO hotel (name, location, region, image_url, description, price) VALUES
 
 INSERT INTO users (name, email,password) VALUES
 ('浦川','a@a','123');
+=======
+('山形スカイホテル', '山形県山形市香澄町', '山形県', 'https://example.com/yamagata.jpg', '蔵王観光の拠点に最適。', 9200);
+INSERT INTO users (name, email, password) VALUES ('a','aa@a.com','aaaaa');
+--INSERT INTO bookmarks (user, hotel, registeredAt) 
+--INSERT INTO reservation (user, hotel, checkin_date, checkout_date, people, rooms, status, reservation_date);
+>>>>>>> 76b492f470a59431380550b26832dae7b81c0e92

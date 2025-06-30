@@ -1,5 +1,17 @@
 package com.example.demo.travelvooking.controller;
 
+<<<<<<< HEAD
+=======
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+>>>>>>> 76b492f470a59431380550b26832dae7b81c0e92
 import com.example.demo.travelvooking.dto.LoginRequest;
 import com.example.demo.travelvooking.dto.UserRegisterRequest;
 import com.example.demo.travelvooking.dto.UserResponseDTO;
@@ -11,8 +23,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+<<<<<<< HEAD
 @RequestMapping("/auth")  // Vue 側では `/api/auth` になる（proxy設定で）
 @CrossOrigin(origins = "http://localhost:5173", allowCredentials = "true")
+=======
+@RequestMapping("/auth")
+@CrossOrigin
+>>>>>>> 76b492f470a59431380550b26832dae7b81c0e92
 public class AuthController {
 
     @Autowired
