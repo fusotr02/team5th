@@ -83,9 +83,9 @@ const prefectures = [
 ]
 
 const recommendedHotels = ref([
-  { id: 1, name: '東京リゾート', location: '東京都', price: 15000, image: '/img/hotel1.jpg' },
-  { id: 2, name: '大阪グランドホテル', location: '大阪府', price: 12000, image: '/img/hotel2.jpg' },
-  { id: 3, name: '沖縄ビーチホテル', location: '沖縄県', price: 18000, image: '/img/hotel3.jpg' },
+  { id: 1, name: '東京リゾート', location: '東京都', price: 15000, image: '/images/hokkaido.jpg' },
+  { id: 2, name: '大阪グランドホテル', location: '大阪府', price: 12000, image: '/images/hokkaido.jpg' },
+  { id: 3, name: '沖縄ビーチホテル', location: '沖縄県', price: 18000, image: '/images/hokkaido.jpg' },
 ])
 
 const searchHotels = () => {
