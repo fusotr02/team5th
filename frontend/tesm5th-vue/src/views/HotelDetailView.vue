@@ -21,7 +21,6 @@
 <script setup>
 import { ref, onMounted } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import hotelService from '@/services/hotelService'
 
 const route = useRoute()
 const router = useRouter()

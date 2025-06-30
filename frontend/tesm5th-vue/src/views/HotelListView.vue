@@ -16,7 +16,7 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted,watch } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import axios from 'axios'
 import HotelCard from '../components/HotelCard.vue'
@@ -42,6 +42,7 @@ const fetchHotels = async () => {
 
 onMounted(fetchHotels) 
 
+watch(() => route.query, fetchHotels, { deep: true })
 // const goToDetail = (hotelId) => {
 //   router.push(`/hotel/${hotelId}`) // 例: /hotel/3 → HotelDetailViewへ
 // }
