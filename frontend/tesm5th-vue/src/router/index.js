@@ -24,7 +24,7 @@ const routes = [
   { path: '/', redirect: '/login' }, // 初期表示はマイページ
   { path: '/hotels', component: () => import('../views/HotelListView.vue') }, // ← これが追加された行です
 
-  { path: '/hotels', component: MainPageView }, // ホテル一覧ページ（クエリパラメータ対応）
+  { path: '/main', component: MainPageView }, // ホテル一覧ページ（クエリパラメータ対応）
   { path: '/hotel/:id', name: 'HotelDetail', component: HotelDetailView }, // 詳細ページ
   { path: '/main', component: MainPageView},
 
