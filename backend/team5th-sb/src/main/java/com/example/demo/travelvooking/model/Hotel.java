@@ -18,25 +18,25 @@ public class Hotel {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "ホテルID")
+    @Column(name = "id")
     private Long id;
 
-    @Column(name = "ホテル名", nullable = false, length = 255)
+    @Column(name = "name", nullable = false, length = 255)
     private String name;
 
-    @Column(name = "住所", nullable = false, length = 255)
+    @Column(name = "location", nullable = false, length = 255)
     private String location;
 
-    @Column(name = "都道府県", nullable = false, length = 100)
+    @Column(name = "region", nullable = false, length = 100)
     private String region;  // ← 追加：検索用の都道府県フィールド
 
-    @Column(name = "写真URL", columnDefinition = "TEXT")
+    @Column(name = "imageUrl", columnDefinition = "TEXT")
     private String imageUrl;
 
-    @Column(name = "概要", columnDefinition = "TEXT")
+    @Column(name = "description", columnDefinition = "TEXT")
     private String description;
 
-    @Column(name = "宿泊料金", nullable = false)
+    @Column(name = "price", nullable = false)
     private Integer price;
 }
 

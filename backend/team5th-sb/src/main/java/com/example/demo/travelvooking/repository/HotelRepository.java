@@ -12,14 +12,14 @@ import com.example.demo.travelvooking.model.Hotel;
 public interface HotelRepository extends JpaRepository<Hotel,Long>{
 	
 	// キーワード検索
-    List<Hotel> findByNameContainingOrAddressContainingOrDescriptionContaining(String name, String location, String description);
+    List<Hotel> findByNameContainingOrLocationContainingOrDescriptionContaining(String name, String location, String description);
 
     // 地域で絞り込み
     List<Hotel> findByRegion(String region);
     
-
+    
     // キーワード + 地域 の複合検索（追加）
-    List<Hotel> findByNameContainingOrAddressContainingOrDescriptionContainingAndRegion(
+    List<Hotel> findByNameContainingOrLocationContainingOrDescriptionContainingAndRegion(
             String name, String location, String description, String region);
 
     //部分一致で検索可能        
