@@ -33,8 +33,11 @@ public class ReservationService {
 	private HotelRepository hotelRepository;
 	
 	
-	public List<ReservationResponseDTO> getReservationByUser(int userId){
-		return reservationRepository.findByUser(userId).stream()
+	public List<ReservationResponseDTO> getReservationByUserId(int userId) {
+		User user = userRepository.findById((long) userId)
+                .orElseThrow(() -> new IllegalArgumentException("ユーザーが見つかりません"));
+		List<Reservation> res = reservationRepository.findByUser(user);
+		return res.stream()
 				.map(this::convertToResponse).collect(Collectors.toList());
 	}
 	
