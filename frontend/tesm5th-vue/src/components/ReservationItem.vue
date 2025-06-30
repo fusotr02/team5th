@@ -14,8 +14,8 @@
 </template>
 
 <script setup>
-import { format } from 'date-fns'
-import ja from 'date-fns/locale/ja'
+// import { format } from 'date-fns'
+// import ja from 'date-fns/locale/ja'
 
 // definePropsは1回だけでOK
 const props = defineProps({

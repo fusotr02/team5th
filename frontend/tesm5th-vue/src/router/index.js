@@ -26,6 +26,7 @@ const routes = [
 
   { path: '/hotels', component: MainPageView }, // ホテル一覧ページ（クエリパラメータ対応）
   { path: '/hotel/:id', name: 'HotelDetail', component: HotelDetailView }, // 詳細ページ
+  { path: '/main', component: MainPageView},
 
   { path: '/login', component: LoginView },
   { path: '/register', component: RegisterView },
