@@ -46,3 +46,6 @@ INSERT INTO hotel (name, location, region, image_url, description, price) VALUES
 ('宮崎サンシャインホテル', '宮崎県宮崎市橘通東', '宮崎県', 'https://example.com/miyazaki.jpg', '南国気分を味わえる宿。', 8800),
 ('鹿児島シティホテル', '鹿児島県鹿児島市中央町', '鹿児島県', 'https://example.com/kagoshima.jpg', '桜島を望む絶景ホテル。', 9700),
 ('沖縄リゾートホテル', '沖縄県那覇市久茂地', '沖縄県', 'https://example.com/okinawa.jpg', '南国リゾートの決定版。', 14000);
+
+INSERT INTO users (name, email,password) VALUES
+('浦川','a@a','123');

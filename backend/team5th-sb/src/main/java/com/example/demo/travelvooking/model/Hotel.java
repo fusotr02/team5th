@@ -36,7 +36,11 @@ public class Hotel {
     @Column(name = "概要", columnDefinition = "TEXT")
     private String description;
 
+
     @Column(name = "宿泊料金", nullable = false)
+
+    @Column(name = "宿泊料金", nullable = false, precision = 10, scale = 2)
+
     private Integer price;
 }
 
