@@ -22,7 +22,7 @@ import HotelDetailView from '../views/HotelDetailView.vue'
 
 const routes = [
   { path: '/', redirect: '/login' }, // 初期表示はマイページ
-  { path: '/main', component: MainPageView }, // ← これが追加された行です
+  { path: '/hotels', component: () => import('../views/HotelListView.vue') }, // ← これが追加された行です
 
   { path: '/hotels', component: MainPageView }, // ホテル一覧ページ（クエリパラメータ対応）
   { path: '/hotel/:id', name: 'HotelDetail', component: HotelDetailView }, // 詳細ページ
