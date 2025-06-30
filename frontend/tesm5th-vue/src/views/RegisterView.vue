@@ -1,4 +1,24 @@
 <template>
+
+  <div class="register-container">
+   <!--  ハンバーガーメニュー -->
+    <div class="menu-icon" @click="toggleSidebar">☰</div>
+
+    <!-- サイドバー -->
+    <div class="sidebar" :class="{ open: isSidebarOpen }">
+      <button @click="navigateTo('/login')">ログイン</button>
+      <button @click="navigateTo('/register')">新規登録</button>
+      <button @click="toggleSidebar" class="back-button">戻る</button>
+    </div>
+
+    <!-- メイン登録フォーム -->
+    <h2>新規登録</h2>
+    <form @submit.prevent="handleConfirm">
+      <input type="text" v-model="name" placeholder="名前" required />
+      <input type="email" v-model="email" placeholder="メールアドレス" required />
+      <input type="password" v-model="password" placeholder="パスワード" required />
+      <button type="submit">確認</button>
+    </form> 
   <div class="wrapper">
     <!-- ヘッダー -->
     <header class="header">
@@ -34,7 +54,10 @@
         <router-link to="/" class="back-home-link">トップページへ戻る</router-link>
       </form>
     </div>
+
   </div>
+  </div>
+
 </template>
 
 <script setup>
@@ -49,28 +72,59 @@ const form = ref({
   password: ''
 })
 
-const goToConfirm = () => {
-  router.push({ name: 'RegisterConfirm', state: form.value })
+
+const navigateTo = (path) => {
+  router.push(path)
+  isSidebarOpen.value = false
+}
+
+const handleConfirm = () => {
+  router.push({
+    name: 'RegisterConfirm',
+    query: {
+      name: name.value,
+      email: email.value,
+      password: password.value
+    }
+  })
+
+
 }
 </script>
 
 <style scoped>
-.wrapper {
-  position: relative;
-  min-height: 100vh;
-  background-color: #ffffff;
-  padding-top: 80px;
+
+:global(html, body) {
+  margin: 0;
+  padding: 0;
+  height: 100%;
 }
 
-/* ヘッダー */
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  background-color: #1e3a8a;
-  color: white;
-  padding: 16px 24px;
-  position: fixed;
+.register-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  padding: 40px;
+  box-sizing: border-box;
+  text-align: center;
+  font-family: sans-serif;
+  overflow: hidden;
+  background-color: #f9f9f9;
+}
+
+/* ハンバーガーアイコン */
+.menu-icon {
+  text-align: left;
+  font-size: 24px;
+  margin-bottom: 20px;
+  cursor: pointer;
+}
+
+/* サイドバー */
+.sidebar {
+  position: absolute;
+
+
   top: 0;
   left: 0;
   width: 100%;
@@ -115,32 +169,42 @@ const goToConfirm = () => {
 .register-form {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  text-align: left;
 }
-
-label {
-  font-weight: bold;
-  margin-bottom: 4px;
+.sidebar.open {
+  left: 0;
 }
-
-input {
-  padding: 8px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-}
-
-button[type="submit"] {
+.sidebar button {
+  width: 100%;
   padding: 10px;
-  background-color: #1976d2;
-  color: white;
-  border: none;
-  border-radius: 4px;
+  margin-bottom: 10px;
+  background-color: white;
+  border: 1px solid #333;
+  cursor: pointer;
+}
+.back-button {
+  margin-top: calc(100% - 45px); /* 戻るボタンの位置を少し下へ */
+}
+
+/* 入力欄とボタンのサイズ調整（1/2サイズ） */
+input {
+  display: block;
+  width: 25%; /* ログイン画面と同様 */
+  padding: 10px;
+  margin: 10px auto;
+  border: 1px solid #233;
+  font-size: 16px;
+  box-sizing: border-box;
+}
+button {
+  width: 25%;
+  padding: 10px;
+  margin: 10px auto;
+  font-size: 16px;
+  border: 1px solid #233;
+  background-color: white;
+
+ 
   cursor: pointer;
   font-weight: bold;
 }
